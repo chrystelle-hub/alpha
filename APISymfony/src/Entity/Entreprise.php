@@ -73,10 +73,16 @@ class Entreprise
      */
     private $formation;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Contact", mappedBy="entreprise")
+     */
+    private $contacts;
+
     public function __construct()
     {
         $this->candidatures = new ArrayCollection();
         $this->formation = new ArrayCollection();
+        $this->contacts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -244,6 +250,37 @@ class Entreprise
     {
         if ($this->formation->contains($formation)) {
             $this->formation->removeElement($formation);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Contact[]
+     */
+    public function getContacts(): Collection
+    {
+        return $this->contacts;
+    }
+
+    public function addContact(Contact $contact): self
+    {
+        if (!$this->contacts->contains($contact)) {
+            $this->contacts[] = $contact;
+            $contact->setEntreprise($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContact(Contact $contact): self
+    {
+        if ($this->contacts->contains($contact)) {
+            $this->contacts->removeElement($contact);
+            // set the owning side to null (unless already changed)
+            if ($contact->getEntreprise() === $this) {
+                $contact->setEntreprise(null);
+            }
         }
 
         return $this;
