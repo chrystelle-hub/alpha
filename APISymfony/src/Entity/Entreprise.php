@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -60,6 +62,22 @@ class Entreprise
      * @ORM\Column(type="text")
      */
     private $historique_modif;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Candidature", mappedBy="entreprise")
+     */
+    private $candidatures;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\formation", inversedBy="entreprises")
+     */
+    private $formation;
+
+    public function __construct()
+    {
+        $this->candidatures = new ArrayCollection();
+        $this->formation = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -170,6 +188,63 @@ class Entreprise
     public function setHistoriqueModif(string $historique_modif): self
     {
         $this->historique_modif = $historique_modif;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Candidature[]
+     */
+    public function getCandidatures(): Collection
+    {
+        return $this->candidatures;
+    }
+
+    public function addCandidature(Candidature $candidature): self
+    {
+        if (!$this->candidatures->contains($candidature)) {
+            $this->candidatures[] = $candidature;
+            $candidature->setEntreprise($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCandidature(Candidature $candidature): self
+    {
+        if ($this->candidatures->contains($candidature)) {
+            $this->candidatures->removeElement($candidature);
+            // set the owning side to null (unless already changed)
+            if ($candidature->getEntreprise() === $this) {
+                $candidature->setEntreprise(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|formation[]
+     */
+    public function getFormation(): Collection
+    {
+        return $this->formation;
+    }
+
+    public function addFormation(formation $formation): self
+    {
+        if (!$this->formation->contains($formation)) {
+            $this->formation[] = $formation;
+        }
+
+        return $this;
+    }
+
+    public function removeFormation(formation $formation): self
+    {
+        if ($this->formation->contains($formation)) {
+            $this->formation->removeElement($formation);
+        }
 
         return $this;
     }
