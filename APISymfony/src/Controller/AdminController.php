@@ -12,27 +12,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @Route("/admin")
  */
 class AdminController extends AbstractController
 {
-    /**
-     * @Route("/", name="admin", methods={"GET"})
-     */
-    public function index(SerializerInterface $serialize)
-    {
-        $user = new User();
-
-        $data = $serialize->serialize($user,'json');
-        
-        return new Response($data,200, [
-            'Content-Type' =>'application/json'
-        ]);
-    }
- 
     /**
      * @Route("/list/user", name="admin_list_user", methods={"GET"})
      */
@@ -48,13 +33,13 @@ class AdminController extends AbstractController
     }
 
      /**
-     * @Route("/list/formation/{id}", name="admin_list_formation", methods={"GET"})
+     * @Route("/list/formation", name="admin_list_formation", methods={"GET"})
      */
-    public function listFormation(FormationRepository $formationRepository, SerializerInterface $serialize, $id)
+    public function listFormation(FormationRepository $formationRepository, SerializerInterface $serialize)
     {
-        $formation = $formationRepository->find($id);
+        $formation = $formationRepository->findAll();
 
-        $data = $serialize->serialize($formation,'json', ['groups'=>'formation:users']);
+        $data = $serialize->serialize($formation,'json', ['groups'=>'formation']);
         
         return new Response($data,200, [
             'Content-Type' =>'application/json'

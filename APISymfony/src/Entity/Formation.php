@@ -17,18 +17,21 @@ class Formation
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      * @Groups("formation:users")
+     * @Groups("formation")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("formation:users")
+     * @Groups("formation")
      */
     private $Nom;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("formation:users")
+     * @Groups("formation")
      */
     private $Tag;
 
