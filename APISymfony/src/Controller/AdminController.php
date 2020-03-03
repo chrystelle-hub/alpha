@@ -68,11 +68,12 @@ class AdminController extends AbstractController
         $userValidate = $em->getRepository(User::class)->find($id);
 
         $data = json_decode($request->getContent());
-        $userValidate->setEtatCompte(1);
-
-
-        $em->persist($userValidate);
-        $em->flush();
+        
+        if($userValidate->getEtatCompte() != 1)
+        {
+            $userValidate->setEtatCompte(1);
+            $em->persist($userValidate);
+            $em->flush();
 
         $data = [
             'status'=>200,
@@ -80,5 +81,15 @@ class AdminController extends AbstractController
         ];
 
         return new JsonResponse($data);
+        } 
+        else {
+            $data = [
+                'statut' => 400,
+                'message' => 'le compte est déjà validé'
+            ];
+        return new JsonResponse($data);
+        }
+
+
     }
 }
