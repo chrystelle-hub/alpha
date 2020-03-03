@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/all.css">
     <link rel="stylesheet" href="../css/site.css">
-    <script src="./Public/JS/jquery-ui-1.12.1/jquery-ui.js"></script>
+    <script src="../jquery-3.4.1.min.js"></script>
+    <script src="../jquery-ui-1.12.1/jquery-ui.js"></script>
 </head>
 <body>
 <header class="fond_header_template2" id="header">
