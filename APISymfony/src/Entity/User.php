@@ -6,9 +6,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+* @UniqueEntity(fields={"email"},message="Il existe déjà un compte avec cette adresse mail")
+
  */
 class User implements UserInterface
 {
@@ -21,11 +25,13 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
+    
      */
     private $roles = [];
 
@@ -61,7 +67,7 @@ class User implements UserInterface
     private $etat_compte;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\formation", inversedBy="users")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Formation", inversedBy="users")
      */
     private $formation;
 
@@ -183,42 +189,10 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getDateCreationPassword(): ?string
-    {
-        return $this->date_creation_password;
-    }
+   
 
-    public function setDateCreationPassword(string $date_creation_password): self
-    {
-        $this->date_creation_password = $date_creation_password;
-
-        return $this;
-    }
-
-    public function getListePwd(): ?string
-    {
-        return $this->liste_pwd;
-    }
-
-    public function setListePwd(string $liste_pwd): self
-    {
-        $this->liste_pwd = $liste_pwd;
-
-        return $this;
-    }
-
-    public function getEtatCompte(): ?string
-    {
-        return $this->etat_compte;
-    }
-
-    public function setEtatCompte(string $etat_compte): self
-    {
-        $this->etat_compte = $etat_compte;
-
-        return $this;
-    }
-
+   
+    
     /**
      * @return Collection|formation[]
      */
@@ -284,6 +258,42 @@ class User implements UserInterface
                 $candidature->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDateCreationPassword(): ?\DateTimeInterface
+    {
+        return $this->date_creation_password;
+    }
+
+    public function setDateCreationPassword(\DateTimeInterface $date_creation_password): self
+    {
+        $this->date_creation_password = $date_creation_password;
+
+        return $this;
+    }
+
+    public function getListePwd(): ?array
+    {
+        return $this->liste_pwd;
+    }
+
+    public function setListePwd(array $liste_pwd): self
+    {
+        $this->liste_pwd = $liste_pwd;
+
+        return $this;
+    }
+
+    public function getEtatCompte(): ?int
+    {
+        return $this->etat_compte;
+    }
+
+    public function setEtatCompte(int $etat_compte): self
+    {
+        $this->etat_compte = $etat_compte;
 
         return $this;
     }
