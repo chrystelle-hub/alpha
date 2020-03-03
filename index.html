@@ -17,11 +17,128 @@
 			<input type="text" id="prenom" name="prenom" placeholder="prenom" />
 		<button id="buttoninscription">inscription</button>
 	</div>
+	<select id="formation" multiple>
+  <option value="1">1ravz</option>
+  <option value="2">2az</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>
 	<button id="test">test</button>
+	<button id="testAjoutEntreprise">Ajout Entreprise</button>
+	<button id="testAjoutCandidature">Ajout Candidature</button>
+	<button id="testAjoutContact">Ajout Contact</button>
+	<button id="testModifEntreprise">Modif Entreprise</button>
 </body>
 </html>
 <script>
 $(function(){
+	$("#testModifEntreprise").click(function(){
+		$.ajax({
+			url: "https://127.0.0.1:8000/modif/entreprise",
+			
+			//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
+			data:{//"X-AUTH-TOKEN":"REAL" ,
+			"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku" ,
+			'id':5,
+			'secteur_activite':'ttrest36trefcbvc',
+			'adresse':'testtrze zer rezt rezttzq',
+			'code postal':22000,
+			'tel':0645635366,
+			'mail':'a@a',
+			'formation':$('#formation').val()
+		},
+			type: 'POST',
+			dataType: 'json',
+			crossDomain: true, 
+			
+		}).done(function(data){
+			console.log(data);
+			//alert(JSON.parse(data));
+			//alert(data);
+		}).always(function(){
+			console.log("end2");
+		});
+		});
+	$("#testAjoutContact").click(function(){
+
+		$.ajax({
+			url: "https://127.0.0.1:8000/add/contact",
+			
+			//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
+			data:{
+				"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku" ,
+			'nom':'mr xxx',
+			'fonction':'directeur de la dsi',
+			'tel':0606060606,
+			
+			'entreprise':5
+			
+		},
+			type: 'POST',
+			dataType: 'json',
+			crossDomain: true, 
+			
+		}).done(function(data){
+			console.log(data);
+			//alert(JSON.parse(data));
+			//alert(data);
+		}).always(function(){
+			console.log("end2");
+		});
+		});
+	$("#testAjoutCandidature").click(function(){
+		$.ajax({
+			url: "https://127.0.0.1:8000/add/candidature",
+			
+			//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
+			data:{
+				"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku" ,
+			'moyen':0,
+			'etat':1,
+			'reponse':1,
+			'delai_reponse':5,
+			'entreprise':1
+			
+		},
+			type: 'POST',
+			dataType: 'json',
+			crossDomain: true, 
+			
+		}).done(function(data){
+			console.log(data);
+			//alert(JSON.parse(data));
+			//alert(data);
+		}).always(function(){
+			console.log("end2");
+		});
+		});
+	$("#testAjoutEntreprise").click(function(){
+		console.log($('#formation').val());
+		$.ajax({
+			url: "https://127.0.0.1:8000/add/entreprise",
+			
+			//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
+			data:{//"X-AUTH-TOKEN":"REAL" ,
+			"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku" ,
+			'nom':'ttttt',
+			'secteur_activite':'testtrrezeazeaz',
+			'adresse':'test',
+			'code postal':22400,
+			'tel':0645635365,
+			'formation':$('#formation').val()
+		},
+			type: 'POST',
+			dataType: 'json',
+			crossDomain: true, 
+			
+		}).done(function(data){
+			console.log(data);
+			//alert(JSON.parse(data));
+			//alert(data);
+		}).always(function(){
+			console.log("end2");
+		});
+		});
 	$("#test").click(function(){
 		$.ajax({
 			url: "https://127.0.0.1:8000/profil",

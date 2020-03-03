@@ -16,6 +16,7 @@ use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 class TokenAuthenticator extends AbstractGuardAuthenticator
 {
     private $em;
+ 
 
     public function __construct(EntityManagerInterface $em)
     {
@@ -49,6 +50,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
         }
 
         // if a User is returned, checkCredentials() is called
+
         return $this->em->getRepository(User::class)
             ->findOneBy(['apiToken' => $credentials])
         ;
@@ -73,8 +75,8 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
     {
         $data = [
             // you may ant to customize or obfuscate the message first
-            'message' => strtr($exception->getMessageKey(), $exception->getMessageData())
-
+           // 'message' => strtr($exception->getMessageKey(), $exception->getMessageData())
+            'message'=>"Access denied"
             // or to translate this message
             // $this->translator->trans($exception->getMessageKey(), $exception->getMessageData())
         ];

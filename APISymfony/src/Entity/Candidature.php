@@ -37,13 +37,13 @@ class Candidature
     private $delai_reponse;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\user", inversedBy="candidatures")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="candidatures")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\entreprise", inversedBy="candidatures")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Entreprise", inversedBy="candidatures")
      * @ORM\JoinColumn(nullable=false)
      */
     private $entreprise;

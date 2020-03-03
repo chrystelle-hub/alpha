@@ -5,9 +5,11 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EntrepriseRepository")
+ * @UniqueEntity(fields={"nom"},message="Il existe déjà une entreprise avec ce nom")
  */
 class Entreprise
 {
@@ -19,14 +21,10 @@ class Entreprise
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,unique=true)
      */
     private $nom;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $raison_social;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -49,12 +47,12 @@ class Entreprise
     private $departement;
 
     /**
-     * @ORM\Column(type="string", length=16)
+     * @ORM\Column(type="string", length=16, nullable=true)
      */
     private $tel;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $mail;
 
@@ -69,7 +67,7 @@ class Entreprise
     private $candidatures;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\formation", inversedBy="entreprises")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Formation", inversedBy="entreprises")
      */
     private $formation;
 
@@ -98,18 +96,6 @@ class Entreprise
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getRaisonSocial(): ?string
-    {
-        return $this->raison_social;
-    }
-
-    public function setRaisonSocial(string $raison_social): self
-    {
-        $this->raison_social = $raison_social;
 
         return $this;
     }
