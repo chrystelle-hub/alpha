@@ -1,0 +1,479 @@
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+select{
+    -moz-appearance: none;
+    appearance: none;
+    background: none;
+    border: none;
+    border-radius: 0;
+    outline: none;
+}
+input[type="text"]{
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    width: 100%;
+}
+input[type="radio"]{
+    -webkit-appearance: radio;
+    background-color: rgba(99, 99, 99, 0.57);
+    padding: 10px;
+    border-radius: 100%;
+}
+
+select{
+    background-color: white;
+    padding: 10px;
+    width: 32%;
+}
+
+input::placeholder {
+    color: rgb(53, 53, 53);
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: rgb(53, 53, 53);
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgb(53, 53, 53);
+}
+body{
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+}
+a{
+    text-decoration:none;
+    color: #DADADA;
+}
+header{
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Verdana;
+    z-index: 1000;
+
+}
+
+.fond_header_template2{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.logo{
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    width: 180px;
+}
+.logo img{
+    max-height: 100px;
+}
+.contenair_header{
+
+    width: 65%;
+    display: flex;
+    justify-content: space-between;
+}
+.contenair_naviguation{
+    display: flex;
+    width: 60%;
+    justify-content: space-between;
+    align-items: center;
+}
+.naviguation_menu{
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    color: darkgray;
+}
+.menu_cache{
+    width: 65%;
+    padding: 10px;
+    justify-content: center;
+    display: none;
+}
+.naviguation_menu a:hover{
+    color: #00a0e0 !important;
+}
+.naviguation_menu p :hover{
+    color: #00a0e0;
+}
+.naviguation_menu a i {
+    font-size: 25px;
+}
+.button_connect{
+    padding:12px 0 12px 0;
+    font:bold 13px Arial;
+    background:#00a0e0;
+    color:#fff;
+    border-radius:1px;
+    width:150px;
+    font-size: 13px;
+    border:none;
+}
+.button_inscription{
+    background:#00a0e0;
+    width: 250px;
+    margin:5px
+}
+.button_info{
+    background:#e3007e;
+    width: 250px;
+    margin:5px
+}
+.button_connect i{
+    font-size: 20px;
+    padding-right: 5px;
+}
+.button_connect:hover{
+    background:#0485B8;
+}
+.cache{
+    visibility: initial;
+}
+.little_header{
+    width: 100%;
+    height: 35px;
+    background-color: #87bb34;
+}
+/** ------------------------------- Inscription
+
+ */
+.contenair_principal{
+    background: url("../image/imageCars.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    background-size: 2000px;
+    min-height: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.form_inscription{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.form_inscription input{
+    width: 90%;
+    height: 50px;
+    margin: 7px;
+
+}
+.titre_inscri{
+    color: black;
+    font-family: Verdana;
+    display: flex;
+    justify-content: center;
+    margin: 7px;
+    font-size: 22px;
+}
+titre_inscri  p{
+    color: #0485B8;
+}
+.info{
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.contenair_formulaire{
+    width: 20%;
+    box-shadow: 0 10px 20px rgba(203,132,210,0.10), 0 6px 6px rgba(0,0,0,0.16);
+    border-radius: 1%;
+    background-color: white;
+    padding: 20px;
+    margin-right: 20px;
+    min-width: 300px;
+}
+.stat_sup{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.stat{
+    min-width: 250px;
+    max-width: 350px;
+    font-family: Bahnschrift;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    background-color: white;
+}
+.stat ul{
+    padding: 20px;
+}
+.stat ul li{
+    padding: 5px;
+}
+.stat ul li label{
+    font-size: 22px;
+    color :#e3007e;
+}
+.info_sup{
+    font-family: Verdana;
+    margin-bottom: 300px;
+    display: flex;
+    color: white;
+    border-radius: 10%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.espacement_cool{
+    margin-bottom:  50px;
+}
+.espacement_pascool{
+    margin-top: 50px;
+}
+.info_sup div{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.7;
+}
+.info_sup h2{
+    position: absolute;
+    font-size: 25px;
+}
+.stat p{
+    font-size: 40px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    color: gray;
+}
+.position_button_info{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+.titre_inscri h2 label{
+    font-size: 19px;
+    color :#e3007e;
+}
+.stat h3{
+    padding: 20px;
+    text-align: justify;
+}
+.form_centre{
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+}
+.form_inscription p {
+    font-family: Bahnschrift;
+    width: 100%;
+    padding: 5px;
+    font-size: 11px;
+
+}
+.a_defini{
+    color: gray;
+    font-family: Bahnschrift;
+}
+.a_defini:hover{
+    color: #00a0e0;
+}
+
+
+
+
+/** TEMPLATE 2--------------------------------------- */
+.naviguation_menu2{
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
+}
+.option{
+    font-size: 20px;
+    font-family: Bahnschrift;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.option:hover{
+    font-weight:bold;
+    color: #87bb34;
+}
+.logo2 img{
+    max-height: 70px;
+}
+.option i{
+    padding: 10px;
+}
+.option label{
+    font-size: 18px;
+    color: gray;
+}
+.option:hover{
+    visibility: initial;
+}
+.ligne_selec{
+    width: 100%;
+    height: 3px;
+    background: green;
+
+}
+
+
+
+/** -----------------RECHERCHE VIEW*/
+.contenair_recherche{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.barre_recherche{
+    border: 1px grey solid;
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.barre_recherche i {
+    font-size: 25px;
+    padding: 5px;
+    color: #00a0e0;
+}
+input[type ="search"]{
+    -webkit-appearance: none;
+    border: none;
+    width: 100%;
+    font-family: Bahnschrift;
+    padding: 10px;
+    font-size: 20px;
+}
+input[type="search"]::placeholder{
+    color: #A9A9A9;
+}
+input[type="search"]:focus{
+    outline: none;
+}
+.button_inscri{
+    background:#44a33d;
+    width: 250px;
+    margin:5px
+}
+.contenair_principal_recherche{
+    margin-top: 107px;
+    width: 100%;
+}
+.barre_recherche{
+    display: flex;
+}
+.form_recherche{
+    width: 40%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.footer{
+    width: 100%;
+    height: 250px;
+    background: white;
+}
+.footer2{
+    width: 100%;
+    height: 250px;
+    background: white;
+}
+footer{
+    position: absolute;
+    z-index: 1200;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: 0;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size:17px ;
+    font-family: Bahnschrift;
+    color: white;
+}
+
+
+@media (max-width: 1500px) {
+    .contenair_principal{
+        flex-direction: column;
+
+    }
+    .contenair_formulaire{
+        margin-top: 190px;
+    }
+    .info{
+        display: none;
+    }
+}
+@media (max-width: 1000px) {
+    .contenair_header{
+        width: 100%;
+
+        justify-content: space-between;
+    }
+    .menu_cache{
+        width: 100%;
+        display: flex;
+    }
+    .naviguation_menu{
+        width: 100%;
+    }
+    .cache{
+        visibility: hidden;
+    }
+    .naviguation_menu2{
+        width: 60%;
+    }
+    .titre_inscri{
+        font-size: 19px;
+    }
+}
