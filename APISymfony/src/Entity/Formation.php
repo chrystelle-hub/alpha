@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FormationRepository")
@@ -15,21 +16,25 @@ class Formation
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("formation:users")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("formation:users")
      */
     private $Nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("formation:users")
      */
     private $Tag;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="formation")
+     * @Groups("formation:users")
      */
     private $users;
 
