@@ -1,0 +1,87 @@
+<html>
+<head>
+<script src="jquery-3.4.1.min.js"></script>
+
+</head>
+<body>
+
+		<div>
+		<input type="text" id="emailConnexion" name="emailConnexion" placeholder="emailConnexion" />
+			<input type="text" id="pwd" name="pwd" placeholder="pwd" />
+		<button id="buttonConnexion">Connexion</button>
+	</div>
+	<div>
+		<input type="text" id="email" name="email" placeholder="email" />
+			<input type="password" id="pwd2" name="pwd2" placeholder="pwd2" />
+			<input type="text" id="nom" name="nom" placeholder="nom" />
+			<input type="text" id="prenom" name="prenom" placeholder="prenom" />
+		<button id="buttoninscription">inscription</button>
+	</div>
+	<button id="test">test</button>
+</body>
+</html>
+<script>
+$(function(){
+	$("#test").click(function(){
+		$.ajax({
+			url: "https://127.0.0.1:8000/profil",
+			
+			//headers:{"X-AUTH-TOKEN":"REAL"},
+			data:{"X-AUTH-TOKEN":"REAL" },
+			type: 'POST',
+			dataType: 'json',
+			crossDomain: true, 
+			
+		}).done(function(data){
+			console.log(data);
+			//alert(JSON.parse(data));
+			//alert(data);
+		}).always(function(){
+			console.log("end2");
+		});
+		});
+	$("#buttoninscription").click(function(){
+		$.ajax({
+			url: "https://127.0.0.1:8000/register",
+
+			type: 'POST',
+			data:{
+				email: $("#email").val(),
+				password:$("#pwd2").val(),
+				nom:$("#nom").val(),
+				prenom:$("#prenom").val(),
+			},
+			dataType: 'json',
+			crossDomain: true, 
+			
+		}).done(function(data){
+			console.log(data);
+			//alert(JSON.parse(data));
+			//alert(data);
+		}).always(function(){
+			console.log("end2");
+		});
+	});
+	$("#buttonConnexion").click(function(){
+		$.ajax({
+			url: "https://127.0.0.1:8000/login",
+			type: 'POST',
+			data:{
+				email: $("#emailConnexion").val(),
+				password:$("#pwd").val(),
+			},
+			dataType: 'text',
+			crossDomain: true, 
+			
+		}).done(function(data){
+			console.log(data);
+			//alert(JSON.parse(data));
+			//alert(data);
+		}).always(function(){
+			console.log("end2");
+		});
+	});
+	
+});
+
+</script>
