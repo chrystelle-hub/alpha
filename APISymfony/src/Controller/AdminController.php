@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Formation;
 use App\Entity\User;
+use App\Form\AjoutFormationType;
 use App\Repository\FormationRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -91,5 +93,32 @@ class AdminController extends AbstractController
         }
 
 
+    }
+    /**
+     * @Route("/add/formation", name="admin_add_formation" method ={"POST"})
+     */
+    public function addFormation(Request $request, SerializerInterface $serializer ,EntityManagerInterface $em)
+    {
+        $formation = new Formation();
+        $form = $this->createForm(AjoutFormationType::class,$formation);
+        $values = $request->request->all();
+        unset($values["X-AUTH-TOKEN"]);
+        $form->submit($values);
+
+        if($form->isValid())
+        {
+            $formation = $serializer->deserialize($request->getContent(), Formation::class, 'json');
+            $em-> persist($formation);
+            $em->flush();
+
+            $data = [
+                'status' => 201,
+                'message' => 'la formation a bien été ajoutée'
+            ];
+            $response = new JsonResponse($data, 201);
+
+            $response->headers->set('Access-Control-Allow-Origin', '*');
+            return $response;
+        }
     }
 }

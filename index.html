@@ -29,7 +29,8 @@
 	<button id="testAjoutContact">Ajout Contact</button>
 	<button id="testModifEntreprise">Modif Entreprise</button>
 	<button id="testModifContact">Modif Contact</button>
-	<button id="testModifCandidature">Modif Candidature</button>	
+	<button id="testModifCandidature">Modif Candidature</button>
+	<button id="testAjoutFormation">Modif Candidature</button>		
 </body>
 </html>
 <script>
@@ -248,6 +249,30 @@ $(function(){
 			console.log("end2");
 		});
 	});
+	$("#testAjoutFormation").click(function(){
+		$.ajax({
+			url: "http://localhost:8000/admin/add/formation",
+			
+			//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
+			data:{
+				"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku" ,
+			'Nom':'cda',
+			'Tag':'cda',
+			'promotion':'2019',
+			
+		},
+			type: 'POST',
+			dataType: 'json',
+			crossDomain: true, 
+			
+		}).done(function(data){
+			console.log(data);
+			//alert(JSON.parse(data));
+			//alert(data);
+		}).always(function(){
+			console.log("end2");
+		});
+		});
 	
 });
 
