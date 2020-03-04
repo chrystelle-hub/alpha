@@ -226,6 +226,7 @@ class ModifController extends AbstractController
         //remove champs nom form
         $form->remove('moyen');
         $form->remove('entreprise');
+        $form->remove('formation');
         $values=$request->request->all();
         //remove data qui ne servent pas dans le formulaire
         unset($values["X-AUTH-TOKEN"]);

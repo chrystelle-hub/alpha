@@ -48,6 +48,12 @@ class Candidature
      */
     private $entreprise;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Formation")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $formation;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -121,6 +127,18 @@ class Candidature
     public function setEntreprise(?entreprise $entreprise): self
     {
         $this->entreprise = $entreprise;
+
+        return $this;
+    }
+
+    public function getFormation(): ?Formation
+    {
+        return $this->formation;
+    }
+
+    public function setFormation(?Formation $formation): self
+    {
+        $this->formation = $formation;
 
         return $this;
     }

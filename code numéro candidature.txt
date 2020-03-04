@@ -1,0 +1,14 @@
+candidature
+moyen : 0->lettre
+	1-> email
+	2->telephone
+	3->sur place
+
+etat    0->en cours
+	1-> fini
+
+reponse 0->en attente
+	1-> entretien en attente de réponse
+	2->refusé après entretien
+	3->refusé sans entretien
+	4->accepté

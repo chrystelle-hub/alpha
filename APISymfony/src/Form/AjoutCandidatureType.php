@@ -52,6 +52,15 @@ class AjoutCandidatureType extends AbstractType
                     ])
                      ],
              ])
+            ->add('formation',NumberType::class,[
+                'mapped'=>false,
+                      'invalid_message' =>'erreur',
+                'constraints' => [
+                     new NotBlank([
+                        'message' => 'Veillez saisir une formation',
+                    ])
+                     ],
+            ])
         ;
     }
 

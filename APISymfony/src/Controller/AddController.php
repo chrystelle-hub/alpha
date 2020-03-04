@@ -144,6 +144,8 @@ class AddController extends AbstractController
           
             $entreprise=$this->getDoctrine()->getRepository(Entreprise::class)->find($request->get('entreprise'));
             $candidature->setEntreprise($entreprise);
+            $formation=$this->getDoctrine()->getRepository(Formation::class)->find($request->get('formation'));
+            $candidature->setFormation($formation);
             $user= $this->getDoctrine()->getRepository(User::class)->findOneBy(['apiToken' => $request->request->get('X-AUTH-TOKEN')]);
             $candidature->setUser($user);
             $entityManager = $this->getDoctrine()->getManager();

@@ -32,7 +32,7 @@ class LoginController extends AbstractController
          $entityManager = $this->getDoctrine()->getManager();
         $user->setApiToken($apiToken);
         $entityManager->flush();
-        return $this->json(['result' => $apiToken]);
+        return $this->json(['api_token' => $apiToken]);
     }
     /**
      * @Route("/token", name="token")
