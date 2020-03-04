@@ -30,11 +30,33 @@
 	<button id="testModifEntreprise">Modif Entreprise</button>
 	<button id="testModifContact">Modif Contact</button>
 	<button id="testModifCandidature">Modif Candidature</button>
-	<button id="testAjoutFormation">Modif Candidature</button>		
+	<button id="testAjoutFormation">ajout formation</button>	
+	<button id="testAffichageEntreprise">Affichage Entreprise</button>	
 </body>
 </html>
 <script>
 $(function(){
+	$("#testAffichageEntreprise").click(function(){
+		$.ajax({
+			url: "https://127.0.0.1:8000/affichage",
+			
+			//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
+			data:{//"X-AUTH-TOKEN":"REAL" ,
+			"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku" ,
+			
+		},
+			type: 'POST',
+			dataType: 'json',
+			crossDomain: true, 
+			
+		}).done(function(data){
+			console.log(data);
+			//alert(JSON.parse(data));
+			//alert(data);
+		}).always(function(){
+			console.log("end2");
+		});
+		});
 	$("#testModifCandidature").click(function(){
 		$.ajax({
 			url: "https://127.0.0.1:8000/modif/candidature",
@@ -251,7 +273,7 @@ $(function(){
 	});
 	$("#testAjoutFormation").click(function(){
 		$.ajax({
-			url: "http://localhost:8000/admin/add/formation",
+			url: "https://127.0.0.1:8000/admin/add/formation",
 			
 			//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
 			data:{

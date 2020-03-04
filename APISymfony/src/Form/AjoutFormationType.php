@@ -42,6 +42,7 @@ class AjoutFormationType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Formation::class,
+            'csrf_protection' => false,
         ]);
     }
 }

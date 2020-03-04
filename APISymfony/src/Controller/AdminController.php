@@ -95,7 +95,7 @@ class AdminController extends AbstractController
 
     }
     /**
-     * @Route("/add/formation", name="admin_add_formation" method ={"POST"})
+     * @Route("/add/formation", name="admin_add_formation", methods ={"POST"})
      */
     public function addFormation(Request $request, SerializerInterface $serializer ,EntityManagerInterface $em)
     {
@@ -107,7 +107,7 @@ class AdminController extends AbstractController
 
         if($form->isValid())
         {
-            $formation = $serializer->deserialize($request->getContent(), Formation::class, 'json');
+           
             $em-> persist($formation);
             $em->flush();
 
@@ -117,8 +117,24 @@ class AdminController extends AbstractController
             ];
             $response = new JsonResponse($data, 201);
 
-            $response->headers->set('Access-Control-Allow-Origin', '*');
-            return $response;
+           
         }
+         else
+         {
+            $response= new Response();
+            $error=[];
+            foreach ($form->getErrors(true) as $error) 
+            {
+                $errors[$error->getOrigin()->getName()][] = $error->getMessage();
+            }
+           $response->setContent(json_encode(
+                [
+                    'ajout'=>'pas ok',
+                    'erreur'=>$errors
+                ]
+            )); 
+         }
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+            return $response;
     }
 }
