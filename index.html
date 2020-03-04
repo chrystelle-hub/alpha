@@ -28,10 +28,60 @@
 	<button id="testAjoutCandidature">Ajout Candidature</button>
 	<button id="testAjoutContact">Ajout Contact</button>
 	<button id="testModifEntreprise">Modif Entreprise</button>
+	<button id="testModifContact">Modif Contact</button>
+	<button id="testModifCandidature">Modif Candidature</button>	
 </body>
 </html>
 <script>
 $(function(){
+	$("#testModifCandidature").click(function(){
+		$.ajax({
+			url: "https://127.0.0.1:8000/modif/candidature",
+			
+			//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
+			data:{//"X-AUTH-TOKEN":"REAL" ,
+			"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku" ,
+			'id':1,
+			'etat':1,
+			'reponse':0,
+			'delai_reponse':50,
+		},
+			type: 'POST',
+			dataType: 'json',
+			crossDomain: true, 
+			
+		}).done(function(data){
+			console.log(data);
+			//alert(JSON.parse(data));
+			//alert(data);
+		}).always(function(){
+			console.log("end2");
+		});
+		});
+	$("#testModifContact").click(function(){
+		$.ajax({
+			url: "https://127.0.0.1:8000/modif/contact",
+			
+			//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
+			data:{//"X-AUTH-TOKEN":"REAL" ,
+			"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku" ,
+			'id':1,
+			'fonction':'ok1',
+			'tel':0645597457,
+			'entreprise':5,
+		},
+			type: 'POST',
+			dataType: 'json',
+			crossDomain: true, 
+			
+		}).done(function(data){
+			console.log(data);
+			//alert(JSON.parse(data));
+			//alert(data);
+		}).always(function(){
+			console.log("end2");
+		});
+		});
 	$("#testModifEntreprise").click(function(){
 		$.ajax({
 			url: "https://127.0.0.1:8000/modif/entreprise",

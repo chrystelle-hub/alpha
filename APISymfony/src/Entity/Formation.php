@@ -46,6 +46,11 @@ class Formation
      */
     private $entreprises;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $promotion;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -133,6 +138,18 @@ class Formation
             $this->entreprises->removeElement($entreprise);
             $entreprise->removeFormation($this);
         }
+
+        return $this;
+    }
+
+    public function getPromotion(): ?string
+    {
+        return $this->promotion;
+    }
+
+    public function setPromotion(string $promotion): self
+    {
+        $this->promotion = $promotion;
 
         return $this;
     }

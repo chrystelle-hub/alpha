@@ -47,7 +47,9 @@ class AddController extends AbstractController
                 }
             }
             $date=new \DateTime();
-            $entreprise->setHistoriqueModif(serialize(['ajout'=>$date->format('Y-m-d H:i')]));
+            $modif='ajout';
+            $historique[$date->format('Y-m-d H:i')][] =$modif ;
+            $entreprise->setHistoriqueModif(serialize($historique));
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($entreprise);
             $entityManager->flush();
@@ -95,7 +97,7 @@ class AddController extends AbstractController
             $date=new \DateTime();
             $historique=unserialize($entreprise->getHistoriqueModif());
             $modif='ajout contact :'.$request->get('nom').', '.$request->get('fonction');
-            $historique[$modif] = $date->format('Y-m-d H:i');
+            $historique[$date->format('Y-m-d H:i')][] =$modif ;
             $entreprise->setHistoriqueModif(serialize($historique));
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($contact);

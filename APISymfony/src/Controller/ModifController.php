@@ -20,10 +20,6 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class ModifController extends AbstractController
 {
-      public function __construct()
-    {
-        $propertyAccessor = PropertyAccess::createPropertyAccessor();
-    }
     /**
      * @Route("/modif/entreprise", name="modifEntreprise")
      */
@@ -133,21 +129,136 @@ class ModifController extends AbstractController
     /**
      * @Route("/modif/contact", name="modifContact")
      */
-    public function contact()
+    public function contact(Request $request)
     {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/ModifController.php',
-        ]);
+        $propertyAccessor = PropertyAccess::createPropertyAccessor();
+        $contactUpdate=new Contact();
+        $response = new Response();
+        //récupérer objet contact en bdd selon l'id
+        $contactUpdate=$this->getDoctrine()->getRepository(Contact::class)->find($request->get('id'));
+        //faire un clone de l'entité pour pouvoir comparer modifs
+        $contactAvantUpdate= clone $contactUpdate;
+        //cretion formalaire lié à l'entité
+        $form = $this->createForm(AjoutContactType::class, $contactUpdate);
+        //remove champs nom form
+        $form->remove('nom');
+        $values=$request->request->all();
+        //remove data qui ne servent pas dans le formulaire
+        unset($values["X-AUTH-TOKEN"]);
+        unset($values['id']);
+        $errors = array();
+        //submit form avec values récupérées en post
+        $form->submit($values); 
+        $date=new \DateTime();
+
+        //si form valide
+        if ($form->isValid()) 
+        {
+            //entreprise avant update
+            $entreprise=$contactAvantUpdate->getEntreprise();
+            //entreprise après update
+            $entrepriseUpdate=$this->getDoctrine()->getRepository(Entreprise::class)->find($request->get('entreprise'));
+            $historique=unserialize($entreprise->getHistoriqueModif());
+            if($entreprise->getId()!=$entrepriseUpdate->getId())
+            {
+                $historique2=unserialize($entrepriseUpdate->getHistoriqueModif());
+                //historique entreprise qui gagne le contact
+                $modif2='ajout contact :'.$contactUpdate->getNom().', '.$contactUpdate->getFonction();
+                $historique2[$date->format('Y-m-d H:i')][] =$modif2 ;
+                $entrepriseUpdate->setHistoriqueModif(serialize($historique2));
+                //historique entreprise qui perd le contact
+                $modif='suppression contact :'.$contactUpdate->getNom().', '.$contactUpdate->getFonction();
+                $historique[$date->format('Y-m-d H:i')][] =$modif ;
+                $contactUpdate->setEntreprise($entrepriseUpdate);
+                $entreprise->setHistoriqueModif(serialize($historique));
+            }
+            else
+            {
+                //pour chaque attribut de l'entité qui peut avoir été modifié verif si il a changé ou pas
+                foreach(['fonction', 'tel', 'mail','linkedin','entreprise'] as $field)
+                {
+                //si il a changé ajouter la modif à l'historique
+                    if($propertyAccessor->getValue($contactAvantUpdate, $field)!=$propertyAccessor->getValue($contactUpdate, $field))
+                    {
+                        $modif='modif contact '. $contactUpdate->getNom().', '.$contactAvantUpdate->getFonction() .':'.$field;
+                        $historique[$date->format('Y-m-d H:i')][] =$modif ;
+                    }
+                } 
+                $entreprise->setHistoriqueModif(serialize($historique));
+            }
+            //enregistré update en bdd et retourner reponse
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
+            $response->setContent(json_encode(
+                [
+                    'modif'=>'ok',
+                    '1'=>$historique,'2'=>$historique2,
+                ]
+            ));
+           }
+        else
+        {
+            foreach ($form->getErrors(true) as $error) 
+            {
+                $errors[$error->getOrigin()->getName()][] = $error->getMessage();
+            }
+           $response->setContent(json_encode(
+                [
+                    'ajout'=>'pas ok',
+                    'erreur'=>$errors
+                ]
+            )); 
+        }
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        return $response;
     }
     /**
      * @Route("/modif/candidature", name="modifCandidature")
      */
-    public function candidature()
-    {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/ModifController.php',
-        ]);
+    public function candidature(Request $request)
+     {
+        $candidatureUpdate=new Candidature();
+        $response = new Response();
+        //récupérer objet contact en bdd selon l'id
+        $candidatureUpdate=$this->getDoctrine()->getRepository(Candidature::class)->find($request->get('id'));
+        //creation formulaire lié à l'entité
+        $form = $this->createForm(AjoutCandidatureType::class, $candidatureUpdate);
+        //remove champs nom form
+        $form->remove('moyen');
+        $form->remove('entreprise');
+        $values=$request->request->all();
+        //remove data qui ne servent pas dans le formulaire
+        unset($values["X-AUTH-TOKEN"]);
+        unset($values['id']);
+        $errors = array();
+        //submit form avec values récupérées en post
+        $form->submit($values); 
+        
+        if ($form->isValid()) 
+        {
+            //enregistré update en bdd et retourner reponse
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
+            $response->setContent(json_encode(
+                [
+                    'modif'=>'ok',
+                ]
+            ));
+           }
+        else
+        {
+            foreach ($form->getErrors(true) as $error) 
+            {
+                $errors[$error->getOrigin()->getName()][] = $error->getMessage();
+            }
+           $response->setContent(json_encode(
+                [
+                    'ajout'=>'pas ok',
+                    'erreur'=>$errors
+                ]
+            )); 
+        }
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        return $response;
     }
 }
