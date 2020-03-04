@@ -29,9 +29,13 @@ class AdminController extends AbstractController
 
         $data = $serialize->serialize($users,'json');
         
-        return new Response($data,200, [
+        $response = new Response($data,200, [
             'Content-Type' =>'application/json'
         ]);
+
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        
+        return $response;
     }
 
      /**
@@ -43,9 +47,13 @@ class AdminController extends AbstractController
 
         $data = $serialize->serialize($formation,'json', ['groups'=>'formation']);
         
-        return new Response($data,200, [
+        $response = new Response($data,200, [
             'Content-Type' =>'application/json'
         ]);
+
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+
+        return $response;
     }
      /**
      * @Route("/formation/{id}/users", name="admin_list_formation_user", methods={"GET"})
@@ -56,9 +64,13 @@ class AdminController extends AbstractController
 
         $data = $serialize->serialize($formation,'json', ['groups'=>'formation:users']);
         
-        return new Response($data,200, [
+        $response = new Response($data,200, [
             'Content-Type' =>'application/json'
         ]);
+
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+
+        return $response;
     }
 
     /**
@@ -82,14 +94,23 @@ class AdminController extends AbstractController
             'message'=>'le compte est validé'
         ];
 
-        return new JsonResponse($data);
+        $response = new JsonResponse($data);
+
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+
+        return $response;
+
         } 
         else {
+
             $data = [
-                'statut' => 400,
+                'statut' => 500,
                 'message' => 'le compte est déjà validé'
             ];
-        return new JsonResponse($data);
+        
+
+
+        return $response;
         }
 
 
@@ -136,5 +157,45 @@ class AdminController extends AbstractController
          }
         $response->headers->set('Access-Control-Allow-Origin', '*');
             return $response;
+    }
+
+     /**
+     * @Route("/add/role/{id}", name="admin_add_role", methods={"PUT"})
+     */
+    public function addRoleAdmin(Request $request,SerializerInterface $serializer, EntityManagerInterface $em, $id)
+    {
+        
+        $error=[];
+        $role = $em->getRepository(User::class)->find($id);
+
+        $data = json_decode($request->getContent());
+
+        $role->setRoles(["ROLE_ADMIN"]);
+
+        if (!$error)
+        {
+            $em->flush();
+
+            $data = [
+                'status'=>201,
+                'message'=>'role ajouté'
+            ];
+
+            $response = new JsonResponse($data, 201);
+
+            $response->headers->set('Access-Control-Allow-Origin', '*');
+            
+            return $response;
+
+        } else {
+
+            $error = $serializer->serialize($error, 'json');
+
+            return new Response($error, 500, [
+                'Content-Type' => 'application/json'
+            ]);
+ 
+        }
+        
     }
 }
