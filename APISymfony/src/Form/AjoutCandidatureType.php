@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class AjoutCandidatureType extends AbstractType
 {
@@ -61,6 +62,11 @@ class AjoutCandidatureType extends AbstractType
                     ])
                      ],
             ])
+            ->add('dateEnvoieCandidature', DateType::class, [
+                'widget' => 'single_text',
+                // this is actually the default format for single_text
+                'format' => 'yyyy-MM-dd',
+            ]);
         ;
     }
 

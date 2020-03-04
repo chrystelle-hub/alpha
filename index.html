@@ -23,6 +23,7 @@
   <option value="3">3</option>
   <option value="4">4</option>
 </select>
+<input type="date" id="date">date
 	<button id="test">test</button>
 	<button id="testAjoutEntreprise">Ajout Entreprise</button>
 	<button id="testAjoutCandidature">Ajout Candidature</button>
@@ -31,11 +32,98 @@
 	<button id="testModifContact">Modif Contact</button>
 	<button id="testModifCandidature">Modif Candidature</button>
 	<button id="testAjoutFormation">ajout formation</button>	
-	<button id="testAffichageEntreprise">Affichage Entreprise</button>	
+	<button id="testAffichageEntreprise">Affichage Entreprise complet</button>	
+	<button id="testAffichageListeCandidaturesUser">Affichage Candidatures user</button>	
+	<button id="testAffichageCandidature">Affichage Candidature id</button>
+	<button id="testAffichageContact">Affichage Contact id</button>
+	<button id="testAffichageEntrepriseId">Affichage Entreprise id</button>
 </body>
 </html>
 <script>
 $(function(){
+	$("#testAffichageEntrepriseId").click(function(){
+		$.ajax({
+			url: "https://127.0.0.1:8000/recuperation/data/entreprise",
+			
+			//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
+			data:{//"X-AUTH-TOKEN":"REAL" ,
+			"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku" ,
+			'id':5,
+		},
+			type: 'POST',
+			dataType: 'json',
+			crossDomain: true, 
+			
+		}).done(function(data){
+			console.log(data);
+			//alert(JSON.parse(data));
+			//alert(data);
+		}).always(function(){
+			console.log("end2");
+		});
+		});
+	$("#testAffichageContact").click(function(){
+		$.ajax({
+			url: "https://127.0.0.1:8000/recuperation/data/contact",
+			
+			//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
+			data:{//"X-AUTH-TOKEN":"REAL" ,
+			"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku" ,
+			'id':3,
+		},
+			type: 'POST',
+			dataType: 'json',
+			crossDomain: true, 
+			
+		}).done(function(data){
+			console.log(data);
+			//alert(JSON.parse(data));
+			//alert(data);
+		}).always(function(){
+			console.log("end2");
+		});
+		});
+	$("#testAffichageCandidature").click(function(){
+		$.ajax({
+			url: "https://127.0.0.1:8000/recuperation/data/candidature",
+			
+			//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
+			data:{//"X-AUTH-TOKEN":"REAL" ,
+			"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku" ,
+			'id':9,
+		},
+			type: 'POST',
+			dataType: 'json',
+			crossDomain: true, 
+			
+		}).done(function(data){
+			console.log(data);
+			//alert(JSON.parse(data));
+			//alert(data);
+		}).always(function(){
+			console.log("end2");
+		});
+		});
+	$("#testAffichageListeCandidaturesUser").click(function(){
+		$.ajax({
+			url: "https://127.0.0.1:8000/profil/candidature",
+			
+			//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
+			data:{//"X-AUTH-TOKEN":"REAL" ,
+			"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku" ,
+		},
+			type: 'POST',
+			dataType: 'json',
+			crossDomain: true, 
+			
+		}).done(function(data){
+			console.log(data);
+			//alert(JSON.parse(data));
+			//alert(data);
+		}).always(function(){
+			console.log("end2");
+		});
+		});
 	$("#testAffichageEntreprise").click(function(){
 		$.ajax({
 			url: "https://127.0.0.1:8000/affichage",
@@ -173,6 +261,7 @@ $(function(){
 			'delai_reponse':5,
 			'entreprise':5,
 			'formation':1,
+			'dateEnvoieCandidature':$('#date').val(),
 			
 		},
 			type: 'POST',

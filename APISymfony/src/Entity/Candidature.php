@@ -54,6 +54,11 @@ class Candidature
      */
     private $formation;
 
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $DateEnvoieCandidature;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -139,6 +144,18 @@ class Candidature
     public function setFormation(?Formation $formation): self
     {
         $this->formation = $formation;
+
+        return $this;
+    }
+
+    public function getDateEnvoieCandidature(): ?\DateTimeInterface
+    {
+        return $this->DateEnvoieCandidature;
+    }
+
+    public function setDateEnvoieCandidature(\DateTimeInterface $DateEnvoieCandidature): self
+    {
+        $this->DateEnvoieCandidature = $DateEnvoieCandidature;
 
         return $this;
     }
