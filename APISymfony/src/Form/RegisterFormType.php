@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class RegisterFormType extends AbstractType
 {
@@ -54,6 +55,15 @@ class RegisterFormType extends AbstractType
                         'message' => 'Veillez saisir un prenom',
                     ]),
                 ],
+            ])
+            ->add('formation',NumberType::class,[
+                'mapped'=>false,
+                      'invalid_message' =>'erreur',
+                'constraints' => [
+                     new NotBlank([
+                        'message' => 'Veillez saisir une formation',
+                    ])
+                     ],
             ])
 
         ;
