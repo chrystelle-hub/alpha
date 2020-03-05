@@ -38,3 +38,4 @@ security:
          - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/profil, roles: ROLE_USER }
          - { path: ^/add, roles: ROLE_USER }
+         - { path: ^/testconnexion, roles: ROLE_USER }

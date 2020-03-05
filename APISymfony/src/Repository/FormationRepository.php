@@ -19,22 +19,22 @@ class FormationRepository extends ServiceEntityRepository
         parent::__construct($registry, Formation::class);
     }
 
-    // /**
-    //  * @return Formation[] Returns an array of Formation objects
-    //  */
-    /*
-    public function findByExampleField($value)
+     /**
+     * @return Formation[] Returns an array of Formation objects
+     */
+    
+    public function findByAnnee($value)
     {
+       $formation=$value['promotion'];
         return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('f.promotion LIKE :val')
+            ->setParameter('val', '%'.$formation.'%')
             ->orderBy('f.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Formation

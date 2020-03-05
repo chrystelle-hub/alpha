@@ -44,7 +44,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
 
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
-        if (null === $credentials) {
+        if (null === $credentials || 'logout' == $credentials) {
             // The token header was empty, authentication fails with 401
             return null;
         }
@@ -81,7 +81,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
             // $this->translator->trans($exception->getMessageKey(), $exception->getMessageData())
         ];
 
-        return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);
+        return new Response(json_encode($data));
     }
 
     /**
@@ -94,7 +94,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
             'message' => 'Authentication Required'
         ];
 
-        return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);
+        return new Response(json_encode($data));
     }
 
     public function supportsRememberMe()

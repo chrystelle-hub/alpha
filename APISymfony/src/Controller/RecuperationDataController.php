@@ -10,6 +10,7 @@ use App\Entity\User;
 use App\Entity\Candidature;
 use App\Entity\Contact;
 use App\Entity\Entreprise;
+use App\Entity\Formation;
 
 class RecuperationDataController extends AbstractController
 {
@@ -78,6 +79,30 @@ class RecuperationDataController extends AbstractController
         $response->setContent(json_encode(
             [
                 'entreprise'=>$entreprise_infos
+            ]
+            )); 
+        
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        return $response;
+    }
+     /**
+     * @Route("/recuperation/data/formationactuelles", name="recuperation_data_formationactuelles")
+     */
+    public function formationactuelles(Request $request)
+    {
+        $date=new \DateTime();
+        $formations=$this->getDoctrine()->getRepository(Formation::class)->findByAnnee(  ['promotion' => $date->format('Y')]);
+        $response=new Response();
+       
+        $formations_liste=[];
+        foreach($formations as $formation)
+        {
+            $formations_liste[]=['tag'=>$formation->getTag(),'id'=>$formation->getId()];
+        }
+
+        $response->setContent(json_encode(
+            [
+                'formation'=>$formations_liste
             ]
             )); 
         

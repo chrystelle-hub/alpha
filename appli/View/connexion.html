@@ -1,5 +1,4 @@
-<?php
-require_once ("../View/template1.php"); ?>
+
 <div class="contenair_connect">
     <div class="titre_connec">
         <h2>S'identifier</h2>
@@ -15,11 +14,12 @@ require_once ("../View/template1.php"); ?>
                     <div class="titre_inscri titre_connect">
                         <h2>déjà un compte ?</h2>
                     </div>
-                    <form class="form_inscription form_connect">
-                        <input type="text" placeholder="Identfiant AFPA">
-                        <input type="text" placeholder="Mot de passe">
-                        <button class="button_connect button_inscription connec_button">S'inscrire</button>
-                    </form>
+                    <div class="form_inscription form_connect">
+                        <span id="erreur"></span>
+                        <input type="text" id="email" placeholder="Email">
+                        <input type="password" id="password" placeholder="Mot de passe">
+                        <button id="buttonConnexion" class="button_connect button_inscription connec_button">Se connecter</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -33,10 +33,13 @@ require_once ("../View/template1.php"); ?>
                 <p>Découvrez un espace personnalisable dédié à
                     votre projet professionnel et tous les outils nécessaires à
                     chaque étape de votre parcours</p>
-                <button class="button_connect button_inscription button_style">Créer un compte</button>
+                <button class="button_connect button_inscription button_style"><a href="inscriptionfinale.html"> Créer un compte</a></button>
             </div>
         </div>
 
 
     </div>
 </div>
+
+ 
+ 

@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Entity\User;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 class LoginController extends AbstractController
@@ -29,7 +30,7 @@ class LoginController extends AbstractController
         $apiToken=genererChaineAleatoire(50);
        
         $user = $security->getUser();
-         $entityManager = $this->getDoctrine()->getManager();
+        $entityManager = $this->getDoctrine()->getManager();
         $user->setApiToken($apiToken);
         $entityManager->flush();
         return $this->json(['api_token' => $apiToken]);
@@ -54,13 +55,43 @@ class LoginController extends AbstractController
          $user= $this->getDoctrine()->getRepository(User::class)->find($id);
         $user->setApiToken($apiToken);
         $entityManager->flush();
-        return $this->json(['result' => $apiToken]);
+        return new JsonResponse([
+           'login' => $apiToken
+       ]);
+       // return $this->json(['login' => $apiToken]);
     }
      /**
      * @Route("/logout", name="logout")
      */
     public function logout()
     {
-        throw new \Exception('This method can be blank - it will be intercepted by the logout key on your firewall');
+        
+        return new jsonResponse([
+            'login'=>'ok'
+        ]);
+    }
+     /**
+     * @Route("/deconnexion", name="logout2")
+     */
+    public function deconnexion(Request $request)
+    {
+        $user= $this->getDoctrine()->getRepository(User::class)->findOneBy(['apiToken' => $request->request->get('X-AUTH-TOKEN')]);
+        $entityManager = $this->getDoctrine()->getManager();
+        $user->setApiToken('logout');
+        $entityManager->flush();
+        $this->logout();
+        return new jsonResponse([
+            'login'=>'ok'
+        ]);
+    }
+    /**
+     * @Route("/testconnexion", name="test")
+     */
+    public function connexion()
+    {
+        
+        return new jsonResponse([
+            'login'=>'ok'
+        ]);
     }
 }
