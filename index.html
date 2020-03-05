@@ -37,10 +37,36 @@
 	<button id="testAffichageCandidature">Affichage Candidature id</button>
 	<button id="testAffichageContact">Affichage Contact id</button>
 	<button id="testAffichageEntrepriseId">Affichage Entreprise id</button>
+	<button id="testSearch">Recherche entreprise</button>
 </body>
 </html>
+<script src="url_ajax.js"></script>
 <script>
 $(function(){
+	$("#testSearch").click(function(){
+		$.ajax({
+			url: url+"/search",
+			
+			//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
+			data:{//"X-AUTH-TOKEN":"REAL" ,
+			"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku" ,
+			
+			'secteur_activite':'te',
+			'departement':22,
+			'formation':'cda',
+		},
+			type: 'POST',
+			dataType: 'json',
+			crossDomain: true, 
+			
+		}).done(function(data){
+			console.log(data);
+			//alert(JSON.parse(data));
+			//alert(data);
+		}).always(function(){
+			console.log("end2");
+		});
+		});
 	$("#testAffichageEntrepriseId").click(function(){
 		$.ajax({
 			url: "https://127.0.0.1:8000/recuperation/data/entreprise",
