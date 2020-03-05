@@ -40,12 +40,12 @@
 	<button id="testSearch">Recherche entreprise</button>
 </body>
 </html>
-
+<script src="url_ajax.js"></script>
 <script>
 $(function(){
 	$("#testSearch").click(function(){
 		$.ajax({
-			url: "https://127.0.0.1:8000/search",
+			url: url+"/search",
 			
 			//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
 			data:{//"X-AUTH-TOKEN":"REAL" ,
