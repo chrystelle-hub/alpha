@@ -18,6 +18,7 @@ class LoginAuthenticator extends AbstractGuardAuthenticator
 {
     private $passwordEncoder;
     private $user;
+    private $mdpCheck;
     public function __construct(UserPasswordEncoderInterface $passwordEncoder,RouterInterface $router)
     {
         $this->passwordEncoder = $passwordEncoder;
@@ -52,14 +53,33 @@ class LoginAuthenticator extends AbstractGuardAuthenticator
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-         $this->user=$user;
-         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
+        $this->user=$user;
+        $login=false;
+        $this->mdpCheck=$this->passwordEncoder->isPasswordValid($user, $credentials['password']);
+        //verif credentials et etat compte pour savoir si on peut se connecter
+        if($this->user!=null)
+        {
+            if($this->mdpCheck&&$this->user->getEtatCompte()===1)
+            {
+                $login=true;
+            }
+        }
+        return $login;
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
+        //definition message erreur suivant origin failure (credentials ou etat compte)
+        $message="credentials";
+        if($this->user!=null)
+        {
+            if($this->user->getEtatCompte()===0&&$this->mdpCheck)
+            {
+                $message="activation";
+            }
+        }
         return new JsonResponse([
-           'login' => false
+           'login' => false,'message'=>$message
        ]);
     }
 
