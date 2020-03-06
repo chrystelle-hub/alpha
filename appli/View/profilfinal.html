@@ -55,7 +55,46 @@ $(document).ready(function()
 				document.location.href='connexionfinale.html';
 				});
 				})
-     			//action spécifiques
+				//action spécifiques
+				
+				$.ajax({
+					url: "https://127.0.0.1:8000/profil",
+					
+					//headers:{"X-AUTH-TOKEN":"REAL"},
+					data:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Kt" ,
+				
+					},
+					type: 'POST',
+					dataType: 'json',
+					crossDomain: true, 
+					
+				}).done(function(data){
+					$("#nom").text(data.user[0].nom)
+					$("#prenom").text(data.user[0].prenom)
+					$("#email").text(data.user[0].email)
+					$("#statut").text(data.user[0].role[0])
+
+					var role = data.user[0].role[0];
+
+					if(role === "ROLE_ADMIN")
+					{
+						$("#statut").text("Formateur")
+					}
+					
+					if(role === "ROLE_USER")
+					{
+						$("#statut").text("Stagiaire")
+					}
+
+					$("#formation").text(data.user[0].formation[0])   
+					console.log(data);
+					//alert(JSON.parse(data));
+					//alert(data);
+				}).always(function(){
+					console.log("end2");
+				});
+			
+				
      	
      		});
      	$("#footer").load("footer.html");

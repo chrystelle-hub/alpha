@@ -8,7 +8,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\User;
 use App\Entity\Candidature;
-
+use App\Entity\Formation;
+use App\Repository\UserRepository;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class ProfilController extends AbstractController
 {
@@ -19,13 +21,13 @@ class ProfilController extends AbstractController
     //recup candidatures user
     public function candidatures(Request $request)
     {
-         $user=$this->getDoctrine()->getRepository(User::class)->findOneBy(['apiToken' => $request->request->get('X-AUTH-TOKEN')]);
+        $user=$this->getDoctrine()->getRepository(User::class)->findOneBy(['apiToken' => $request->request->get('X-AUTH-TOKEN')]);
         $response=new Response();
         $candidatures=$user->getCandidatures();
         $candidature_user=[];
         foreach($candidatures as $candidature)
         {
-            $candidature_user[]=['id'=>$candidature->getId(),'date'=>$candidature->getDateEnvoieCandidature(),'entreprise'=>$candidature->getEntreprise()->getNom()];
+            $candidature_user[]=['id'=>$candidature->getId(),'date'=>$candidature->getDateEnvoieCandidature(),'entreprise'=>$candidature->getEntreprise()->getNom(), 'etat'=>$candidature->getEtat()];
         }
          
         $response->setContent(json_encode(
@@ -37,13 +39,54 @@ class ProfilController extends AbstractController
         return $response;
     }
      /**
-     * @Route("/profil", name="profil")
-     
+     * @Route("/profil", name="profil_id")
      */
-    public function index2(Request $request)
+    
+    public function index(Request $request)
     {
-       
-       return $this->json(['result' => $request->get('X-AUTH-TOKEN')]);
+        $user=$this->getDoctrine()->getRepository(User::class)->findOneBy(['apiToken' => $request->request->get('X-AUTH-TOKEN')]);
+     
+        $formations=$user->getFormation();
+        $formations_liste=[];
+        foreach($formations as $formation)
+        {
+            $formations_liste[]=$formation->getNom();
+        }
+        $response=new Response();
+        $infos_user = [];
+        
+    
+        $infos_user[]=[
+            'id'=>$user->getId(),
+            'nom'=>$user->getNom(),
+            'prenom'=>$user->getPrenom(),
+            'email'=>$user->getEmail(),
+            'role'=>$user->getRoles(),
+            'formation'=>$formations_liste
+        ];
+        
+        $response->setContent(json_encode(
+            [
+                'user'=>$infos_user
+            ]
+        )); 
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        return $response;
+       //return $this->json(['result' => $request->get('X-AUTH-TOKEN')]);
     
     }
+
+    /*public function index2(UserRepository $userRepository, SerializerInterface $serializer, $id,Request $request)
+    {
+        $user = $userRepository->findOneBy(['apiToken' => $request->request->get('X-AUTH-TOKEN')]);
+        $user = $userRepository->find($id);
+
+        $data = $serializer->serialize($user, 'json', ['groups'=>'profil']);
+
+        $response = new Response($data,200, ['Content-Type' =>'application/json', 'result' => $request->get('X-AUTH-TOKEN')]);
+
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+
+        return $response;
+    }*/
 }
