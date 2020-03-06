@@ -22,14 +22,16 @@
                 <i class="fas fa-bell"></i>
                 <label>Anotations</label>
             </div>
-            <div class="option">
+
+            <a class="option" id="recherche_lien"href="">
                 <i class="fas fa-search"></i>
                 <label>Rechercher</label>
-            </div>
-            <div class="option">
+            </a> 
+           
+            <a class="option" id="compte_lien">
                 <i class="fas fa-user"></i>
                 <label>Mon Compte</label>
-            </div>
+            </a>   
         </div>
     </div>
     <div class="little_header">
@@ -37,3 +39,7 @@
     </div>
 
 </header>
+<script>
+$("#recherche_lien").attr("href","recherchefinale.html?token="+token+"");
+$("#compte_lien").attr("href","profilfinal.html?token="+token+"");
+</script>
