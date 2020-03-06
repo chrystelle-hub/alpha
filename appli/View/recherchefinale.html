@@ -54,7 +54,7 @@ $(document).ready(function()
 					}).done(function(data){
 						if(data['erreur']===undefined)
 						{
-							
+							$('#erreur').text('');
 							if(data['entreprise'].length===0)
 							{
 								$(".contenair_entreprise").text("aucune entreprise ne correspond à la recherche");
