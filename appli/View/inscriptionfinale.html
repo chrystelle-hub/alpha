@@ -66,6 +66,10 @@
 					crossDomain: true, 
 					
 				}).done(function(data){
+					$('#erreurEmail').text('');
+					$('#erreurNom').text('');
+					$('#erreurPrenom').text('');
+					$('#erreurPassword').text('');
 					if(data['inscription']==="ok")
 					{
 						$('#message').text("inscription valide, en attente de validation par un admin");

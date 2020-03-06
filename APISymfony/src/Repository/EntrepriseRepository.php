@@ -29,10 +29,9 @@ class EntrepriseRepository extends ServiceEntityRepository
     {
        $departement=$departement;$nom=$nom;$secteur_activite=$secteur_activite;$formation=$formation;
        $qb= $this->createQueryBuilder('e')
-         ->select('e.id','e.nom as nom','e.secteur_activite','e.code_postal','contact.nom as nom_contact')
-            ->leftJoin('e.contacts', 'contact')
+         //->select('e.id','e.nom as nom','e.secteur_activite','e.code_postal')
              ->innerJoin('e.formation', 'f')
-             ->addSelect('f.Tag as tag')
+             //->addSelect('f.Tag as tag')
         
 
             ;
@@ -57,6 +56,7 @@ class EntrepriseRepository extends ServiceEntityRepository
                 $qb->setParameter('valFormation', '%'.$formation.'%');
             }
             $qb->orderBy('e.nom', 'ASC');
+            $qb->groupBy('e.id');
             $query = $qb->getQuery();
             return $query->execute();
         
