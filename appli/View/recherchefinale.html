@@ -6,7 +6,8 @@
 <script type='text/javascript'>
 var url= location.search;
 var param = url.substr(1);
-var tab = param.split('=');
+param = param.split('&');
+var tab = param[0].split('=');
 var token=(tab[1]);
 
 $(document).ready(function()

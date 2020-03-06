@@ -6,8 +6,12 @@
 <script type='text/javascript'>
 var url= location.search;
 var param = url.substr(1);
-var tab = param.split('=');
+param = param.split('&');
+var tab = param[0].split('=');
 var token=(tab[1]);
+
+//var tab2=param[1].split('=');
+//var id=tab2[1]
 
 $(document).ready(function()
 {
@@ -39,7 +43,7 @@ $(document).ready(function()
      			//action spécifiques
      	
      		});
-
+     	$("#footer").load("footer.html");
    	});
 });
 
