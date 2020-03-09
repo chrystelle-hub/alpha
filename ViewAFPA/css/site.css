@@ -1131,9 +1131,124 @@ input[type="search"]:focus{
     opacity: 1;
     transition: 0.3s;
 }
+/** ------------------------------------------------Admin View */
 
-
-
+.contenair_admin{
+    margin-top: 105px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.user_activ{
+    width: 100%;
+    max-height: 530px;
+    overflow-y: auto;
+    box-shadow: 0 10px 20px rgba(203,132,210,0.10), 0 6px 6px rgba(0,0,0,0.10);
+}
+.user{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+.user div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+}
+.user div label{
+    font-family: Verdana;
+    font-size: 12px;
+    color: #8F8F8F;
+}
+.user div p{
+    font-family: Verdana;
+    font-size: 12px;
+    color: black;
+}
+.valide{
+    background-color: #87bb34;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    width: 25px !important;
+    color: white;
+}
+.pas_valide{
+    background-color: #D32C2C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    width: 25px !important;
+    color: white;
+}
+.pas_valide:hover{
+    background-color: #A62828 ;
+}
+.valide:hover{
+    background-color: #6C9529;
+}
+.div_accept{
+    display: flex;
+    flex-direction: initial !important;
+    justify-content: space-around;
+    width: 15% !important;
+}
+.titre_admin{
+    width: 33%;
+}
+.taille_inscri{
+    width: 20%;
+}
+.titre_admin h2{
+    font-size: 22px;
+    font-family: Verdana;
+    color: #837F7F;
+    border-bottom: 1px #E4E4E4 solid;
+    padding: 5px;
+}
+.column_admin{
+    display: flex;
+    flex-direction: column;
+}
+.admin_search input{
+    font-size: 15px;
+    height: 30px;
+}
+.admin_search{
+    margin-top: 0px;
+}
+.contenair_formulaire_cont{
+    margin-top: 50px;
+}
+.liste_formateur{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.liste_formateur button{
+    width: 30%;
+    background-color: #87bb34;
+}
+.formateur_align{
+    display: flex;
+    flex-direction: column;
+}
+.nom_form label{
+    font-size: 15px;
+    font-family: Bahnschrift;
+}
+.nom_form p{
+    font-size: 15px;
+    font-family: Bahnschrift;
+    color: grey;
+}
+.contenair_formateur_form{
+    height: 225px;
+    overflow-y: auto;
+}
 
 
 
@@ -1153,7 +1268,7 @@ footer{
     position: absolute;
     z-index: 1200;
     bottom: 0;
-w    right: 0;
+    right: 0;
     left: 0;
     margin: 0;
     height: 50px;
