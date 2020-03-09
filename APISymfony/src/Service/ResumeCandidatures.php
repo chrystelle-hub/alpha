@@ -63,6 +63,6 @@ class ResumeCandidatures
                     break;
             }
         }
-        return $liste_reponses=['en attente'=>$reponses0,'entretien en attente de réponse'=>$reponses1,'refusé après entretien'=>$reponses2,'refusé sans entretien'=>$reponses3,'accepté'=>$reponses4];
+        return $liste_reponses=['en attente'=>$reponses0,'entretien en attente de reponse'=>$reponses1,'refuse apres entretien'=>$reponses2,'refuse sans entretien'=>$reponses3,'accepte'=>$reponses4];
     }
 }

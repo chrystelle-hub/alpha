@@ -63,8 +63,14 @@ class AffichageController extends AbstractController
             $liste_moyens=$resumeCandidatures->listeMoyens($moyens);
             $liste_etats=$resumeCandidatures->listeEtats($etats);
             $liste_reponses=$resumeCandidatures->listeReponses($reponses);
-            $delai_reponse=array_sum($delai_reponses) / (count($delai_reponses));
-
+            if(count($delai_reponses)!=0)
+            {
+                $delai_reponse=array_sum($delai_reponses) / (count($delai_reponses));
+            }
+            else
+            {
+                 $delai_reponse='--';
+            }
            //liste formation
            $liste_formations_candidature=[];
 
@@ -85,11 +91,6 @@ class AffichageController extends AbstractController
            }
 
             $liste_candidature[]=['nb'=>$nb_candidatures,'moyen'=>$liste_moyens,'etat'=>$liste_etats,'reponse'=>$liste_reponses,'formation'=>$liste_formations_candidature,'delai_reponse'=>$delai_reponse];
-           //liste contact
-            foreach($contacts as $contact)
-            {
-                $liste_contact[]=['nom'=>$contact->getNom(),'fonction'=>$contact->getFonction(),'tel'=>$contact->getTel(),'mail'=>$contact->getMail(),'linkedin'=>$contact->getLinkedin()];
-            }
            
 
             $response->setContent(json_encode(
