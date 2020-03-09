@@ -73,7 +73,7 @@ $(document).ready(function()
 					$("#prenom").text(data.user[0].prenom)
 					$("#email").text(data.user[0].email)
 					$("#statut").text(data.user[0].role[0])
-
+				
 					var role = data.user[0].role[0];
 
 					if(role === "ROLE_ADMIN")
@@ -87,9 +87,53 @@ $(document).ready(function()
 					}
 
 					$("#formation").text(data.user[0].formation[0])   
-					console.log(data);
-					//alert(JSON.parse(data));
-					//alert(data);
+					//console.log(data);
+
+					var candidature = data['candidature'];
+					
+					candidature.forEach(function(element)
+					{
+						var date = new Date(element["date"].date);
+						const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour:'2-digit', minute:'2-digit'};
+						var date = date.toLocaleDateString("fr-FR", options);
+						var etat = element["etat"];
+					
+						if(element["etat"] === 0)
+						{
+							var etat = "En cours";
+						}
+
+						if(element["etat"] === 1)
+						{
+							var etat = "Fini";
+						}
+						
+						var html = '<div class="ligne_histo">'+
+						'<div class="nom_histo">'+
+							'<label>Nom entreprise</label>'+
+							'<h3 id="nom_entreprise">'+element["entreprise"]+'</h3>'+
+						'</div>'+
+	
+						'<div class="date_histo">'+
+							'<label>Date</label>'+
+							'<h3 id="date_candidature">'+date+'</h3>'+
+						'</div>'+
+	
+						'<div class="statut_histo">'+
+							'<div>'+
+								'<label>Statut</label>'+
+								'<h3 id="etat_candidature">'+etat+'</h3>'+
+							'</div>'+
+							'<i class="fas fa-circle"></i>'+
+						'</div>'+
+						'</div>';
+						
+							$(html).appendTo($('.historique_contenair')) 
+
+						
+						//alert(JSON.parse(data));
+						//alert(data);
+					})
 				}).always(function(){
 					console.log("end2");
 				});
