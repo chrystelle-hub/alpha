@@ -53,6 +53,16 @@ class ProfilController extends AbstractController
             $formations_liste[]=$formation->getNom();
         }
         $response=new Response();
+        $candidatures=$user->getCandidatures();
+        $candidature_user=[];
+        foreach($candidatures as $candidature)
+        {
+            $candidature_user[]=[
+                'id'=>$candidature->getId(),
+                'date'=>$candidature->getDateEnvoieCandidature(),
+                'entreprise'=>$candidature->getEntreprise()->getNom(), 
+                'etat'=>$candidature->getEtat()];
+        }
         $infos_user = [];
         
     
@@ -67,7 +77,8 @@ class ProfilController extends AbstractController
         
         $response->setContent(json_encode(
             [
-                'user'=>$infos_user
+                'user'=>$infos_user,
+                'candidature'=>$candidature_user
             ]
         )); 
         $response->headers->set('Access-Control-Allow-Origin', '*');
