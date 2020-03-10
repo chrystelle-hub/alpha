@@ -59,7 +59,7 @@ class AddController extends AbstractController
             $entityManager->flush();
             $response->setContent(json_encode(
                 [
-                    'ajout'=>'ok'
+                    'ajout'=>'ok','id'=>$entreprise->getId()
                 ]
             ));
             
