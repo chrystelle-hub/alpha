@@ -1,0 +1,40 @@
+<style type="text/css">
+.title {
+  padding-top: 150px;
+}
+</style>
+<div class="title"><h3 id="nom"></h3></div> 
+<div class=container>
+    <fieldset> 
+            <div class="box">
+                <div class="formulaire_add" method="POST" action="">
+                    <div class="formulaire">
+                                          
+                        <span id="erreurFormation"></span>
+                        <label for="formation">Formation visée :</label>
+                        <select id="formation" multiple="true" name="choix_formation" placeholder="Choisissez une formation">               
+                        </select>
+                        <span id="erreurSecteur"></span>
+                        <label for="activite">Secteur d'activité :</label>
+                        <input type="text" id="activite" name="activite" placeholder="Secteur d'activité" required>
+                        <span id="erreurAdresse"></span>
+                        <label for="adresse">Adresse :</label>
+                        <input type="text" id="adresse" name="adresse" placeholder="Adresse" required>
+                        <span id="erreurCode"></span>
+                        <label for="code_postal">Code postal :</label>
+                        <input type="text" id="code_postal" name="code_postal" placeholder="Code postal" required>
+                    </div>
+                    <div class="formulaire2">
+                        <span id="erreurTel"></span>
+                        <label class="tel">Tel :</label>
+                        <input type="text" id= "tel" name="tel" placeholder="Tel">
+                        <span id="erreurEmail"></span>
+                        <label for="email">Email :</label>
+                        <input type="text" id="email" name="email" placeholder="Email">
+                                
+                    </div>
+                    <input type="button" id="buttonModif" value="Ajouter">
+                </div>
+            </div>
+    </fieldset>
+</div>

@@ -102,7 +102,7 @@ class ModifController extends AbstractController
             $entityManager->flush();
             $response->setContent(json_encode(
                 [
-                    'ajout'=>'ok',
+                    'ajout'=>'ok'
 
                 ]
             ));
@@ -156,9 +156,11 @@ class ModifController extends AbstractController
         {
             //entreprise avant update
             $entreprise=$contactAvantUpdate->getEntreprise();
+            $historique=unserialize($entreprise->getHistoriqueModif());
+            /* si changement entreprise
             //entreprise après update
             $entrepriseUpdate=$this->getDoctrine()->getRepository(Entreprise::class)->find($request->get('entreprise'));
-            $historique=unserialize($entreprise->getHistoriqueModif());
+            
             if($entreprise->getId()!=$entrepriseUpdate->getId())
             {
                 $historique2=unserialize($entrepriseUpdate->getHistoriqueModif());
@@ -172,8 +174,9 @@ class ModifController extends AbstractController
                 $contactUpdate->setEntreprise($entrepriseUpdate);
                 $entreprise->setHistoriqueModif(serialize($historique));
             }
+            
             else
-            {
+            {*/
                 //pour chaque attribut de l'entité qui peut avoir été modifié verif si il a changé ou pas
                 foreach(['fonction', 'tel', 'mail','linkedin','entreprise'] as $field)
                 {
@@ -183,7 +186,7 @@ class ModifController extends AbstractController
                         $modif='modif contact '. $contactUpdate->getNom().', '.$contactAvantUpdate->getFonction() .':'.$field;
                         $historique[$date->format('Y-m-d H:i')][] =$modif ;
                     }
-                } 
+                //} 
                 $entreprise->setHistoriqueModif(serialize($historique));
             }
             //enregistré update en bdd et retourner reponse
@@ -191,8 +194,8 @@ class ModifController extends AbstractController
             $entityManager->flush();
             $response->setContent(json_encode(
                 [
-                    'modif'=>'ok',
-                    '1'=>$historique,'2'=>$historique2,
+                    'modif'=>'ok','id'=>$entreprise->getId()
+                    
                 ]
             ));
            }
