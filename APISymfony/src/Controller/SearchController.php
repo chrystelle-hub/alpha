@@ -25,6 +25,7 @@ class SearchController extends AbstractController
         $response= new Response;
         if ($form->isValid())
         {
+            //recup données form pour faire la recherche
             $data=$form->getData();
             $departement=$data['departement'];
             $nom=$data['nom'];
@@ -32,7 +33,9 @@ class SearchController extends AbstractController
             $formation=$data['formation'];
             $formation_liste=[];
             $entreprise_liste=[];
+            //requete de recherche
             $entreprises = $this->getDoctrine()->getRepository(Entreprise::class)->findBySearch($departement,$nom,$secteur_activite,$formation);
+            //recup infos
             foreach ($entreprises as  $entreprise) 
             {
                 $id=$entreprise->getId();
@@ -63,12 +66,9 @@ class SearchController extends AbstractController
             $response->setContent(json_encode(
                 [
                     'erreur'=>$errors,
-                    
                 ]
             )); 
         }
-        
-         
         $response->headers->set('Access-Control-Allow-Origin', '*');
         return $response;
     }

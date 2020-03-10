@@ -85,10 +85,8 @@ class LoginAuthenticator extends AbstractGuardAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-         return new RedirectResponse($this->router->generate('token',['id'=>$this->user->getId()]));
-       /* return new JsonResponse([
-           'login' => true, 'token'=>$token
-       ]);*/
+        //générer token
+        return new RedirectResponse($this->router->generate('token',['id'=>$this->user->getId()]));
     }
 
     public function start(Request $request, AuthenticationException $authException = null)

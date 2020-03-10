@@ -23,7 +23,7 @@ class ModifController extends AbstractController
     /**
      * @Route("/modif/entreprise", name="modifEntreprise")
      */
-
+    //update entreprise
     public function entreprise(Request $request)
     {
         $propertyAccessor = PropertyAccess::createPropertyAccessor();

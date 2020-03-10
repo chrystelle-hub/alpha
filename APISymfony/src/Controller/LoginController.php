@@ -16,9 +16,10 @@ class LoginController extends AbstractController
     /**
      * @Route("/login", name="login")
      */
+    //redirige vers loginAuthenticator
     public function login()
     {
-         function genererChaineAleatoire($longueur, $listeCar = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+         /*function genererChaineAleatoire($longueur, $listeCar = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
             {
              $chaine = '';
              $max = mb_strlen($listeCar, '8bit') - 1;
@@ -28,16 +29,16 @@ class LoginController extends AbstractController
              return $chaine;
             }
         $apiToken=genererChaineAleatoire(50);
-       
         $user = $security->getUser();
         $entityManager = $this->getDoctrine()->getManager();
         $user->setApiToken($apiToken);
         $entityManager->flush();
-        return $this->json(['api_token' => $apiToken]);
+        return $this->json(['api_token' => $apiToken]);*/
     }
     /**
      * @Route("/token", name="token")
      */
+    //generation token/update user au login
     public function token(Request $request)
     {
          function genererChaineAleatoire($longueur, $listeCar = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
@@ -50,16 +51,16 @@ class LoginController extends AbstractController
              return $chaine;
             }
         $apiToken=genererChaineAleatoire(50);
-       $id=$request->query->get('id');
-         $entityManager = $this->getDoctrine()->getManager();
-         $user= $this->getDoctrine()->getRepository(User::class)->find($id);
+        $id=$request->query->get('id');
+        $entityManager = $this->getDoctrine()->getManager();
+        $user= $this->getDoctrine()->getRepository(User::class)->find($id);
         $user->setApiToken($apiToken);
         $entityManager->flush();
         return new JsonResponse([
            'login' => $apiToken
        ]);
-       // return $this->json(['login' => $apiToken]);
     }
+
      /**
      * @Route("/logout", name="logout")
      */
@@ -73,6 +74,7 @@ class LoginController extends AbstractController
      /**
      * @Route("/deconnexion", name="logout2")
      */
+     //set token user à 'logout' quand il se déconnecte
     public function deconnexion(Request $request)
     {
         $user= $this->getDoctrine()->getRepository(User::class)->findOneBy(['apiToken' => $request->request->get('X-AUTH-TOKEN')]);
@@ -87,9 +89,9 @@ class LoginController extends AbstractController
     /**
      * @Route("/testconnexion", name="test")
      */
+    //pour savoir rapidement si on à l'accès à la page et donc si a un token valide
     public function connexion()
     {
-        
         return new jsonResponse([
             'login'=>'ok'
         ]);

@@ -16,15 +16,15 @@ class RegisterController extends AbstractController
     /**
      * @Route("/register", name="register")
      */
-   public function register(UserPasswordEncoderInterface $passwordEncoder, Request $request)
+    public function register(UserPasswordEncoderInterface $passwordEncoder, Request $request)
     {
         $user = new User();
-           $response = new Response();
+        $response = new Response();
         $form = $this->createForm(RegisterFormType::class, $user);
         $form->submit($request->request->all()); 
-
-      
-        if ($form->isValid()) {
+        //creation nouvel user
+        if ($form->isValid()) 
+        {
             $user->setPassword($passwordEncoder->encodePassword(
                     $user,$form->get('password')->getData()));
             $user->setDateCreationPassword(new \DateTime());
@@ -47,7 +47,8 @@ class RegisterController extends AbstractController
         else
         {
              $errors = array();
-            foreach ($form->getErrors(true) as $error) {
+            foreach ($form->getErrors(true) as $error) 
+            {
                 $errors[$error->getOrigin()->getName()][] = $error->getMessage();
             }
 

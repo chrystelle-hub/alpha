@@ -17,6 +17,7 @@ class AffichageController extends AbstractController
     /**
      * @Route("/affichage", name="affichage")
      */
+    //retourner infos entreprise avec infos contacts/formations/candidatures liées
     public function affichageEntreprise(Request $request)
     {
         $idEntreprise=$request->get('id');
@@ -71,7 +72,7 @@ class AffichageController extends AbstractController
             {
                  $delai_reponse='--';
             }
-           //liste formation
+           //liste candidatures selon formation
            $liste_formations_candidature=[];
 
            foreach($formations_candidature as $key=>$formation)
@@ -89,10 +90,7 @@ class AffichageController extends AbstractController
                 $liste_reponses2=$resumeCandidatures->listeReponses($reponses2);
                 $liste_formations_candidature[]=['tag'=>$key,'nb'=>$nb_candidatures2,'moyen'=>$liste_moyens2,'etat'=>$liste_etats2,'reponse'=>$liste_reponses2];
            }
-
             $liste_candidature[]=['nb'=>$nb_candidatures,'moyen'=>$liste_moyens,'etat'=>$liste_etats,'reponse'=>$liste_reponses,'formation'=>$liste_formations_candidature,'delai_reponse'=>$delai_reponse];
-           
-
             $response->setContent(json_encode(
                 [ 'entreprise_infos'=>$infos_entreprise,'liste_contact'=>$liste_contact,'liste_formation'=>$liste_formation,'liste_candidature'=>$liste_candidature ]
             )); 
@@ -103,8 +101,6 @@ class AffichageController extends AbstractController
                 [ 'id'=>'pas ok', ]
             )); 
         }
-       
-
         $response->headers->set('Access-Control-Allow-Origin', '*');
         return $response;
     }

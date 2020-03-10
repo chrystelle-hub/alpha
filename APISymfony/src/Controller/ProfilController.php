@@ -86,18 +86,4 @@ class ProfilController extends AbstractController
        //return $this->json(['result' => $request->get('X-AUTH-TOKEN')]);
     
     }
-
-    /*public function index2(UserRepository $userRepository, SerializerInterface $serializer, $id,Request $request)
-    {
-        $user = $userRepository->findOneBy(['apiToken' => $request->request->get('X-AUTH-TOKEN')]);
-        $user = $userRepository->find($id);
-
-        $data = $serializer->serialize($user, 'json', ['groups'=>'profil']);
-
-        $response = new Response($data,200, ['Content-Type' =>'application/json', 'result' => $request->get('X-AUTH-TOKEN')]);
-
-        $response->headers->set('Access-Control-Allow-Origin', '*');
-
-        return $response;
-    }*/
 }

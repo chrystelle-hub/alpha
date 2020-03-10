@@ -88,6 +88,7 @@ class RecuperationDataController extends AbstractController
      /**
      * @Route("/recuperation/data/formationactuelles", name="recuperation_data_formationactuelles")
      */
+     //recup formation en cours
     public function formationactuelles(Request $request)
     {
         $date=new \DateTime();

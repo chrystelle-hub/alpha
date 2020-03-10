@@ -20,14 +20,17 @@ class AddController extends AbstractController
     /**
      * @Route("/add/entreprise", name="AjoutEntreprise")
      */
+    //ajout entreprise
     public function entreprise(Request $request)
     {
         $entreprise = new Entreprise();
         $response = new Response();
         $form = $this->createForm(AjoutEntrepriseType::class, $entreprise);
         $values=$request->request->all();
+        //enlever du tableau les valeurs non utiles au form
         unset($values["X-AUTH-TOKEN"]);
         unset($values['formation']);
+        //submit le form avec les values
         $form->submit($values); 
         $errors = array();
         $formations=$request->get('formation');
@@ -50,6 +53,7 @@ class AddController extends AbstractController
             $modif='ajout';
             $historique[$date->format('Y-m-d H:i')][] =$modif ;
             $entreprise->setHistoriqueModif(serialize($historique));
+            //sauvegarder entité
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($entreprise);
             $entityManager->flush();
@@ -60,11 +64,11 @@ class AddController extends AbstractController
             ));
             
            }
-      
+        //si le form n'est pas valide retourner les erreurs
         else
         {
-           
-            foreach ($form->getErrors(true) as $error) {
+            foreach ($form->getErrors(true) as $error) 
+            {
                 $errors[$error->getOrigin()->getName()][] = $error->getMessage();
             }
 
@@ -81,6 +85,7 @@ class AddController extends AbstractController
     /**
      * @Route("/add/contact", name="AjoutContact")
      */
+    //ajout contact
     public function contact(Request $request)
     {
         $contact = new Contact();
@@ -109,14 +114,13 @@ class AddController extends AbstractController
             ));
             
            }
-      
         else
         {
-             $errors = array();
-            foreach ($form->getErrors(true) as $error) {
+            $errors = array();
+            foreach ($form->getErrors(true) as $error) 
+            {
                 $errors[$error->getOrigin()->getName()][] = $error->getMessage();
             }
-
            $response->setContent(json_encode(
                 [
                     'ajout'=>'pas ok',
@@ -126,12 +130,13 @@ class AddController extends AbstractController
         }
         $response->headers->set('Access-Control-Allow-Origin', '*');
         return $response;
-    
     }
+
     /**
      * @Route("/add/candidature", name="AjoutCandidature")
      */
-   public function candidature(Request $request)
+    //ajout candidature
+    public function candidature(Request $request)
     {
         $candidature = new Candidature();
         $response = new Response();
@@ -158,14 +163,13 @@ class AddController extends AbstractController
             ));
             
            }
-      
         else
         {
-             $errors = array();
-            foreach ($form->getErrors(true) as $error) {
+            $errors = array();
+            foreach ($form->getErrors(true) as $error) 
+            {
                 $errors[$error->getOrigin()->getName()][] = $error->getMessage();
             }
-
            $response->setContent(json_encode(
                 [
                     'ajout'=>'pas ok',
