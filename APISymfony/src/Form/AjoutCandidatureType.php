@@ -55,17 +55,20 @@ class AjoutCandidatureType extends AbstractType
              ])
             ->add('formation',NumberType::class,[
                 'mapped'=>false,
-                      'invalid_message' =>'erreur',
+                'invalid_message' =>'erreur',
                 'constraints' => [
                      new NotBlank([
                         'message' => 'Veillez saisir une formation',
                     ])
                      ],
             ])
+
             ->add('dateEnvoieCandidature', DateType::class, [
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
                 'format' => 'yyyy-MM-dd',
+                'empty_data' => null,
+                'invalid_message' =>'veuillez saisir une date au bon format',
             ]);
         ;
     }

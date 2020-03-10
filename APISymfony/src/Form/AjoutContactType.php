@@ -27,7 +27,7 @@ class AjoutContactType extends AbstractType
             ->add('fonction',TextType::class, [
                 'constraints' => [
                      new NotBlank([
-                        'message' => 'Veillez saisir un nom',
+                        'message' => 'Veillez saisir une fonction',
                     ]),
                 ],
             ])
@@ -46,7 +46,7 @@ class AjoutContactType extends AbstractType
              'invalid_message' =>'erreur',
                 'constraints' => [
                      new NotBlank([
-                        'message' => 'Veillez saisir une formation',
+                        'message' => 'Veillez saisir une entreprise',
                     ]),
                  ],
              ])
