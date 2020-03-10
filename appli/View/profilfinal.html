@@ -71,6 +71,7 @@ $(document).ready(function()
 				}).done(function(data){
 					$("#nom").text(data.user[0].nom)
 					$("#prenom").text(data.user[0].prenom)
+					$("#prenom_utilisateur").text(data.user[0].prenom)
 					$("#email").text(data.user[0].email)
 					$("#statut").text(data.user[0].role[0])
 				
