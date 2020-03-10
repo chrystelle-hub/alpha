@@ -124,7 +124,7 @@ $(document).ready(function()
 						
 						//headers:{"X-AUTH-TOKEN":"REAL"},
 						data:{//"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku" ,
-						id:5,
+						id:8,
 					},
 						type: 'POST',
 						dataType: 'json',
@@ -265,6 +265,46 @@ $(document).ready(function()
 						}).done(function(data){
 	
 	
+							console.log(data);
+							//alert(JSON.parse(data));
+							//alert(data);
+						}).always(function(){
+							console.log("end2");
+						});
+					});
+
+					$("#search").click(function(){
+						$.ajax({
+							url: "https://127.0.0.1:8000/admin/search",
+							
+							//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
+							data:{
+								//"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku" ,
+								email: $("#search_email").val()
+							},
+							type: 'POST',
+							dataType: 'json',
+							crossDomain: true, 
+							
+						}).done(function(data){
+							var user = data['user'];
+							
+
+								if(user['roles'][0] == "ROLE_USER")
+								{
+									var html = '<div class="liste_formateur">'+
+									'<div class="nom_form">'+
+										'<label>Nom Prenom</label>'+
+										'<p id="user_nom_prenom">'+ user['nom'] + ' ' + user['prenom'] +'</p>'+
+									'</div>'+ 
+									'<button class="button_connect button_inscription">'+
+										'<input type="hidden" value=' + user['id'] +'>'+
+										'Formateur</button>'+
+									'</div>'
+									$('.formateur_align').replaceWith(html);
+								}
+						
+							
 							console.log(data);
 							//alert(JSON.parse(data));
 							//alert(data);

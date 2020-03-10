@@ -7,6 +7,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Entreprise;
+use App\Entity\User;
+use App\Repository\UserRepository;
 use App\Form\SearchType;
 
 class SearchController extends AbstractController
@@ -69,6 +71,61 @@ class SearchController extends AbstractController
                 ]
             )); 
         }
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        return $response;
+    }
+
+    /**
+     * @Route("/admin/search", name="admin_search")
+     */
+    public function searchEmail(Request $request)
+    {
+        $form = $this->createForm(SearchType::class,null);
+        $values=$request->request->all();
+        $form->submit($values); 
+        $errors = array();
+        $response= new Response;
+        if ($form->isValid())
+        {
+            $data=$form->getData();
+            $email = $data['email'];
+            $user_liste = [];
+
+            $users = $this->getDoctrine()->getRepository(User::class)->findByEmail($email);
+
+            foreach($users as $user)
+            {
+                $id=$user->getId();
+                $nom=$user->getNom();
+                $prenom=$user->getPrenom();
+                $roles=$user->getRoles();
+
+                $user_liste = [
+                    'id'=>$id,
+                    'nom'=>$nom,
+                    'prenom'=>$prenom,
+                    'roles'=>$roles
+                ];
+            }
+            $response->setContent(json_encode(
+                [
+                    'user'=>$user_liste,
+                    
+                ]
+            ));
+        }
+        else
+        {
+           foreach ($form->getErrors(true) as $error) 
+            {
+                $errors[$error->getOrigin()->getName()][] = $error->getMessage();
+            }
+            $response->setContent(json_encode(
+                [
+                    'erreur'=>$errors,
+                ]
+            ));
+        } 
         $response->headers->set('Access-Control-Allow-Origin', '*');
         return $response;
     }

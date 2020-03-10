@@ -35,6 +35,9 @@ class SearchType extends AbstractType
             ->add('formation',TextType::class,[
                 'required'=>false,
             ])
+            ->add('email', TextType::class,[
+                'required'=>false,
+            ])
         ;
     }
 
