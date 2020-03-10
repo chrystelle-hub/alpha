@@ -1491,7 +1491,61 @@ input[type="search"]:focus{
     color: #87bb34;
 }
 
+/** --------------------CANDIDATURE FORMULAIRE */
+.rien_form{
+    width: auto !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.super_form{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 120px;
 
+}
+.colum_candidat{
+    display: flex;
+    flex-direction: column;
+}
+.add_candidature{
+    font-family: Bahnschrift;
+    color: #2b2b2b;
+}
+.colum_candidat select{
+    width: 100%;
+    margin: 0px;
+    margin-top: 5px;
+    font-family: Verdana;
+}
+.add_candidature div input{
+    margin: 0px;
+    width: 100%;
+    margin-top: 5px;
+    font-family: Verdana;
+}
+.add_candidature div{
+    margin-top: 10px;
+}
+.bouton_form{
+    width: 100%;
+}
+.bouton_form input{
+    margin: 0px;
+    margin-top: 15px;
+    font:bold 13px Arial;
+    background:#00a0e0;
+    color:#fff;
+    border-radius:1px;
+    width: 100%;
+    font-size: 13px;
+    border:none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 37px;
+}
 
 .footer{
     width: 100%;
