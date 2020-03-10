@@ -85,6 +85,8 @@ $(document).ready(function()
 							 $('#formation option[value='+element+']').attr('selected',true)
 						})
 						
+					}).fail(function(){
+						$('#contenu').html('<div class="contenair_relative"><h2>La page demand\351e n\'existe pas <h2></div>');
 					})
 	     		})
 	     		
