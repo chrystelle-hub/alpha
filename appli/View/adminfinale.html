@@ -10,8 +10,15 @@ param = param.split('&');
 var tab = param[0].split('=');
 var token=(tab[1]);
 
-//var tab2=param[1].split('=');
-//var id=tab2[1]
+if(param[1]!=undefined)
+{
+	var tab2=param[1].split('=');
+	var id=tab2[1]
+}
+else
+{
+	id=null;
+}
 
 $(document).ready(function()
 {
@@ -47,7 +54,8 @@ $(document).ready(function()
 					url: "https://127.0.0.1:8000/admin/list/user",
 						
 					//headers:{"X-AUTH-TOKEN":"REAL"},
-					data:{//"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku" ,
+					data:{
+						"X-AUTH-TOKEN":token,
 					
 					},
 					type: 'POST',
@@ -83,7 +91,7 @@ $(document).ready(function()
 							
 								//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
 								data:{
-									//"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku" ,
+									"X-AUTH-TOKEN":token,
 									id: id_user_formateur
 									
 								},
@@ -103,7 +111,7 @@ $(document).ready(function()
 										$("#role").text("le role n'est pas donnée")
 									}
 
-									console.log(data);
+									//console.log(data);
 									//alert(JSON.parse(data));
 									//alert(data);
 								}).always(function(){
@@ -111,7 +119,7 @@ $(document).ready(function()
 							});
 						})
 
-						console.log(data);
+						//console.log(data);
 						//alert(JSON.parse(data));
 						//alert(data);
 					}).always(function(){
@@ -123,9 +131,10 @@ $(document).ready(function()
 						url: "https://127.0.0.1:8000/admin/formation/users",
 						
 						//headers:{"X-AUTH-TOKEN":"REAL"},
-						data:{//"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku" ,
-						id:8,
-					},
+						data:{
+							"X-AUTH-TOKEN":token,
+							id: id,
+						},
 						type: 'POST',
 						dataType: 'json',
 						crossDomain: true, 
@@ -168,15 +177,15 @@ $(document).ready(function()
 						});
 						$(".valide").click(function(){
 
-							var validation = $(event.target);console.log(validation)
-							var id_user =validation.children('input').val();
+							var validation = $(event.target);
+							var id_user = validation.children('input').val();
 								
 							$.ajax({
 								url: "https://127.0.0.1:8000/admin/validate",
 							
 								//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
 								data:{
-									//"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku" ,
+									"X-AUTH-TOKEN":token,
 									id: id_user
 									
 								},
@@ -218,7 +227,7 @@ $(document).ready(function()
 							
 						//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
 						data:{
-							//"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku" ,
+							"X-AUTH-TOKEN":token,
 							Nom: $("#nom_formation").val(),
 							promotion :$("#promotion").val(),
 							Tag: $("#nom_formation").val() + "/" + $("#promotion").val()
@@ -240,7 +249,7 @@ $(document).ready(function()
 								$("#success").text("la formation est ajoutée")
 							}
 
-							console.log(data);
+							//console.log(data);
 							//alert(JSON.parse(data));
 							//alert(data);
 						}).always(function(){
@@ -255,9 +264,9 @@ $(document).ready(function()
 							
 							//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
 							data:{
-								"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku" ,
+								"X-AUTH-TOKEN":token ,
 							
-						},
+							},
 							type: 'POST',
 							dataType: 'json',
 							crossDomain: true, 
@@ -265,7 +274,7 @@ $(document).ready(function()
 						}).done(function(data){
 	
 	
-							console.log(data);
+							//console.log(data);
 							//alert(JSON.parse(data));
 							//alert(data);
 						}).always(function(){
@@ -279,7 +288,7 @@ $(document).ready(function()
 							
 							//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
 							data:{
-								//"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku" ,
+								"X-AUTH-TOKEN":token,
 								email: $("#search_email").val()
 							},
 							type: 'POST',
@@ -305,7 +314,7 @@ $(document).ready(function()
 								}
 						
 							
-							console.log(data);
+							//console.log(data);
 							//alert(JSON.parse(data));
 							//alert(data);
 						}).always(function(){
@@ -315,9 +324,9 @@ $(document).ready(function()
 
 					$.ajax({
 						url: "https://127.0.0.1:8000/recuperation/data/formationactuelles",
-					   type: 'POST',
-					   dataType: 'json',
-					   crossDomain: true, 
+					   	type: 'POST',
+					   	dataType: 'json',
+					   	crossDomain: true, 
 					}).done(function(data)
 					{
 						var formations=data['formation'];
@@ -373,9 +382,7 @@ $(document).ready(function()
 						   console.log(data);
 						   });
 					   })
-				})
-			
-     	
+					})
      		});
      	$("#footer").load("footer.html");
    	});
