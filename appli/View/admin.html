@@ -1,0 +1,70 @@
+
+<div class="contenair_admin">
+    <div class="titre_admin taille_inscri">
+        <h2>Inscrire</h2>
+        <div class="contenair_formulaire">
+            <div class="titre_inscri">
+                <h2>Inscrire un utilisateur</h2>
+            </div>
+            <div class="form_inscription">
+                <span id="erreurEmail"></span>
+                <input id="email" type="email" placeholder=" Email">
+                <span id="erreurNom"></span>
+                <input id="nom" type="text" placeholder="Nom">
+                <span id="erreurPrenom"></span>
+                <input id="prenom" type="text" placeholder="Prenom">
+                <span id="erreurPassword"></span>
+                <input id="password" type="password" placeholder=" Mot de passe">
+                <!--<input type="password" placeholder="Confirmer Mot de passe">-->
+                <select id="formation" placeholder="Choisissez une formation">
+                </select>
+                <button id="inscrire" class="button_connect button_inscription">Inscrire</button>
+            </div>
+        </div>
+    </div>
+    <div class="titre_admin">
+        <h2>Nouveaux inscris</h2>
+        <span id = "success"></span>
+        <div class="user_activ">
+
+        </div>
+    </div>
+
+    <div class="column_admin">
+        <div class="titre_admin taille_inscri">
+            <h2>Formation</h2>
+            <div class="contenair_formulaire">
+                <div class="titre_inscri">
+                    <h2>Nouvelle Formation</h2>
+                </div>
+                <div class="form_inscription">
+                    <span id="success"></span>
+                    <input id="nom_formation" type="text" placeholder="Nom Formation">
+                    <input id="promotion" type="text" placeholder="Promotion">
+                    <button id="ajout_formation"class="button_connect button_inscription">Ajouter</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="titre_admin taille_inscri contenair_formulaire_cont">
+            <h2>Formateur</h2>
+            <div class="contenair_formulaire contenair_formateur_form">
+                <form class="form_inscription">
+                    <div class="barre_recherche admin_search">
+                        <i class="fas fa-search"></i>
+                        <input type="search" name="searchBar" placeholder="Email d'utilisateur"/>
+                    </div>
+                </form>
+                <span id="role"></span>
+                <div class="formateur_align">
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $(".croix_desactive_js")
+</script>

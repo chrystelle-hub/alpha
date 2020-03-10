@@ -33,7 +33,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="json")
-    
+     * @Groups("formation:users")
      */
     private $roles = [];
 
@@ -57,6 +57,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups("formation:users")
      */
     private $date_creation_password;
 
@@ -67,6 +68,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups("formation:users")
      */
     private $etat_compte;
 

@@ -21,13 +21,13 @@ use Symfony\Component\Serializer\SerializerInterface;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/list/user", name="admin_list_user", methods={"GET"})
+     * @Route("/list/user", name="admin_list_user")
      */
     public function list(UserRepository $userRepository, SerializerInterface $serialize)
     {
         $users = $userRepository->findAll();
 
-        $data = $serialize->serialize($users,'json');
+        $data = $serialize->serialize($users,'json',['groups'=>'formation:users']);
         
         $response = new Response($data,200, [
             'Content-Type' =>'application/json'
@@ -56,11 +56,11 @@ class AdminController extends AbstractController
         return $response;
     }
      /**
-     * @Route("/formation/{id}/users", name="admin_list_formation_user", methods={"GET"})
+     * @Route("/formation/users", name="admin_list_formation_user")
      */
-    public function FormationUsers(FormationRepository $formationRepository, SerializerInterface $serialize, $id)
+    public function FormationUsers(FormationRepository $formationRepository, SerializerInterface $serialize,Request $request)
     {
-        $formation = $formationRepository->find($id);
+        $formation = $formationRepository->find($request->request->get('id'));
 
         $data = $serialize->serialize($formation,'json', ['groups'=>'formation:users']);
         
@@ -75,11 +75,11 @@ class AdminController extends AbstractController
 
     /**
      *
-     * @Route("/validate/{id}", name="admin_validate_user", methods={"PUT"})
+     * @Route("/validate", name="admin_validate_user")
      */
-    public function validation(Request $request, EntityManagerInterface $em, $id)
+    public function validation(Request $request, EntityManagerInterface $em)
     {
-        $userValidate = $em->getRepository(User::class)->find($id);
+        $userValidate = $em->getRepository(User::class)->find($request->request->get('id'));
 
         $data = json_decode($request->getContent());
         
@@ -160,13 +160,13 @@ class AdminController extends AbstractController
     }
 
      /**
-     * @Route("/add/role/{id}", name="admin_add_role", methods={"PUT"})
+     * @Route("/add/role", name="admin_add_role")
      */
-    public function addRoleAdmin(Request $request,SerializerInterface $serializer, EntityManagerInterface $em, $id)
+    public function addRoleAdmin(Request $request,SerializerInterface $serializer, EntityManagerInterface $em)
     {
         
         $error=[];
-        $role = $em->getRepository(User::class)->find($id);
+        $role = $em->getRepository(User::class)->find($request->request->get('id'));
 
         $data = json_decode($request->getContent());
 
