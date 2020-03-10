@@ -26,7 +26,7 @@ class AffichageController extends AbstractController
         {
             //recup entreprise infos
             $entreprise=$this->getDoctrine()->getRepository(Entreprise::class)->find($idEntreprise);
-            $infos_entreprise=['id'=>$request->get('id'),'nom'=>$entreprise->getNom(),'secteur_activite'=>$entreprise->getSecteurActivite(),'code_postal'=>$entreprise->getCodePostal(),'adresse'=>$entreprise->getAdresse(),'departement'=> $entreprise->getDepartement(),'tel'=> $entreprise->getTel(),'mail'=> $entreprise->getMail(),'historique'=> $entreprise->getHistoriqueModif()];
+            $infos_entreprise=['id'=>$request->get('id'),'nom'=>$entreprise->getNom(),'secteur_activite'=>$entreprise->getSecteurActivite(),'code_postal'=>$entreprise->getCodePostal(),'adresse'=>$entreprise->getAdresse(),'departement'=> $entreprise->getDepartement(),'tel'=> $entreprise->getTel(),'mail'=> $entreprise->getMail(),'historique'=> unserialize($entreprise->getHistoriqueModif())];
             //recup contact infos
             $contacts=$entreprise->getContacts();
             $liste_contact=[];

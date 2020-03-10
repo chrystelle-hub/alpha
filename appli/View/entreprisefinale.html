@@ -248,6 +248,11 @@ $(document).ready(function()
 							let html3='<p>'+element['tag']+'<p><br>';
 							$(html3).appendTo($('#listeFormations'));
 						})
+						let historique=Object.entries(entreprise_infos['historique']);
+						historique.forEach(function(element){
+							let html4='<p>'+element[0]+' : '+ element[1] +'<p><br>';
+							$(html4).appendTo($('#historique'));
+						})
 					}).fail(function(){
 						$('#contenu').html('<div class="contenair_relative"><h2>La page demand\351e n\'existe pas <h2></div>');
 					})
