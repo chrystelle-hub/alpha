@@ -32,7 +32,7 @@ class AffichageController extends AbstractController
             $liste_contact=[];
             foreach($contacts as $contact)
             {
-                $liste_contact[]=['nom'=>$contact->getNom(),'fonction'=>$contact->getFonction(),'tel'=>$contact->getTel(),'mail'=>$contact->getMail(),'linkedin'=>$contact->getLinkedin()];
+                $liste_contact[]=['id'=>$contact->getId(),'nom'=>$contact->getNom(),'fonction'=>$contact->getFonction(),'tel'=>$contact->getTel(),'mail'=>$contact->getMail(),'linkedin'=>$contact->getLinkedin()];
             }
             //recup formations
             $formations=$entreprise->getFormation();

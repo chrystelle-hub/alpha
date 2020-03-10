@@ -48,6 +48,7 @@ $(document).ready(function()
      	$( "#contenu" ).load( "entreprise.html" , 
      		function()
      		{
+				
      			$.ajax({
 						url: "https://127.0.0.1:8000/affichage",
 						type: 'POST',
@@ -60,6 +61,16 @@ $(document).ready(function()
 						
 					}).done(function(data){
 						let entreprise_infos=data['entreprise_infos']
+						$("#add_candidature").click(function(){
+							document.location.href='ajout_candidaturefinale.html?token='+token+'&id='+entreprise_infos['id'];
+						})
+						$("#add_contact").click(function(){
+							document.location.href='ajout_contactfinal.html?token='+token+'&id='+entreprise_infos['id'];
+						})
+						$("#modif_entreprise").click(function(){
+							document.location.href='modif_entreprisefinal.html?token='+token+'&id='+entreprise_infos['id'];
+						})
+						
 						$("#nomEntreprise").text(entreprise_infos['nom'])
 						$("#adresse").html('Adresse : '+entreprise_infos['adresse']+' '+entreprise_infos['code_postal'])
 						if(entreprise_infos['mail']==null)
@@ -137,7 +148,8 @@ $(document).ready(function()
                             else
                             {
                             	tel='inconnu'
-                            }
+							}
+							let url = 'modif_contactfinal.html?token='+token+'&id='+element['id'];
 							let html='<div id="contenair_contact"  class="ligne_contact dylan_js">'+
                    				'<div  class="name_ligne_contact">'+
 				                       '<h3>'+element['nom']+'</h3>'+
@@ -149,17 +161,23 @@ $(document).ready(function()
 				                            '<ul>'+
 				                                '<li><i class="fab fa-linkedin"></i></li>'+
 				                                '<li><i class="fas fa-phone-square-alt"></i></li>'+
-				                                '<li><i class="fas fa-envelope-square"></i></li>'+
-				                            '</ul>'+
+												'<li><i class="fas fa-envelope-square"></i></li>'+
+												
+											'</ul>'+
+											
 				                        '</div>'+
 				                        '<div class="icone_text">'+
 				                            '<ul>'+
 				                                '<li><a href="https://fr.linkedin.com/">'+linkedin+'</a></li>'+
 				                                '<li>'+mail+'</li>'+
-				                                '<li>'+tel+'</li>'+
-				                            '</ul>'+
-				                        '</div>'+
-				                    '</div>'+
+												'<li>'+tel+'</li>'+
+												
+											'</ul>'+
+											'<button class="button_connect button_inscription"><a href='+url+'>Modifier</a></button>'+
+										'</div>'+
+										
+									'</div>'+
+									
 				            '</div>'
 							$(html).appendTo($('#contact'))
 						})

@@ -39,6 +39,8 @@ $(document).ready(function()
      	$( "#contenu" ).load( "rechercheView.html" , 
      		function()
      		{
+				var url = "ajout_entreprisefinal.html?token="+token
+				$("#ajout").attr("href", url)
      			$("#buttonSearch").click(function(){
 					$.ajax({
 						url: "https://127.0.0.1:8000/search",
