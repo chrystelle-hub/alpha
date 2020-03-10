@@ -1327,7 +1327,7 @@ input[type="search"]:focus{
 .test_admin:hover .bloc_noir{
     display: flex;
 }
-.test_admin button{
+.erreur{
     display: none;
 }
 .bloc_noir{

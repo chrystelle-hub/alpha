@@ -4,7 +4,7 @@ require_once ("../View/template2.php"); ?>
     <div class="contenair_accueil">
         <div class="test_admin">
             <i class="fas fa-user"></i>
-            <button class="button_connect button_inscription">Mon profil</button>
+            <button class="button_connect button_inscription erreur">Mon profil</button>
             <h2>Accèder à mon profil</h2>
             <div class="bloc_noir">
                 <div>
@@ -13,7 +13,6 @@ require_once ("../View/template2.php"); ?>
                         d’entreprise. Actualiser aussi
                         vos informations afin d’avoir un profil toujours à jour.
                         Bénéficier de ce service sur votre pc smartphone et tablette.</p>
-
                     <button class="button_connect button_inscription">Mon profil</button>
                     <i class="fab fa-linkedin"></i>
                 </div>
@@ -21,7 +20,7 @@ require_once ("../View/template2.php"); ?>
         </div>
         <div class="test_admin ole">
             <i class="fas fa-search"></i>
-            <button class="button_connect button_inscription">Mon profil</button>
+            <button class="button_connect button_inscription erreur">Mon profil</button>
             <h2>Rechercher une entreprise</h2>
             <div class="bloc_noir">
                 <div>
