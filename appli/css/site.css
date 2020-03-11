@@ -1546,7 +1546,9 @@ input[type="search"]:focus{
     justify-content: space-around;
     height: 37px;
 }
-
+*, *:before, *:after {
+  box-sizing: border-box;
+}
 .footer{
     width: 100%;
     height: 250px;
@@ -1559,7 +1561,7 @@ input[type="search"]:focus{
 }
 footer{
     position: absolute;
-    z-index: 1200;
+    z-index: -999;
     bottom: 0;
     right: 0;
     left: 0;

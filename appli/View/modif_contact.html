@@ -1,30 +1,40 @@
-<style type="text/css">
-.title {
-  padding-top: 100px;
-}
-</style>
-<div class="title"><h3 id="nom"></h3></div>
-            <div class="container">
-                <div class="box">
-                    <div class="formulaire_contact" method="POST" action="">
-                    <span id="message"></span>
-                        <div class="add_contact">
-                            <span id="erreurFonction"></span>
-                            <label for="fonction_contact">Fonction :</label>
-                            <input type="text" id="fonction_contact" name="fonction_contact" placeholder="Fonction" required>
-                            <span id="erreurTel"></span>
-                            <label for="tel_contact">Tel :</label>
-                            <input type="text" id="tel_contact" name="tel_contact" placeholder="Téléphone">
-                            <span id="erreurEmail"></span>
-                            <label for="email_contact">Email :</label>
-                            <input type="text" id="email_contact" name="email_contact" placeholder="Email">
-                            <span id="erreurLinkedin"></span>
-                            <label for="linkedin_contact">Linkedin :</label>
-                            <input type="text" id="linkedin_contact" name="linkedin_contact" placeholder="Linkedin">
-                        </div>
-                        <div class="bouton">
-                            <input type="button" id="buttonAjout" class="button_add" value="Ajouter">
-                        </div>
+<div class="super_form">
+    <div class="titre_admin rien_form">
+        <h2>Modifier Contact</h2>
+        <div class="contenair_formulaire candidat_form">
+            <div class="formulaire_contact" method="POST" action="">
+                <span id="message"></span>
+                <div class="add_candidature">
+
+                    <div>
+                        <label for="fonction_contact">Fonction :</label>
+                        <input type="text" id="fonction_contact" name="fonction_contact" placeholder="Fonction" required>
+                        <span id="erreurFonction"></span>
                     </div>
+
+                    <div class="colum_candidat">
+                        <label for="tel_contact">Tel :</label>
+                        <input type="text" id="tel_contact" name="tel_contact" placeholder="Téléphone">
+                        <span id="erreurTel"></span>
+                    </div>
+
+                    <div class="colum_candidat">
+                        <label for="email_contact">Email :</label>
+                        <input type="text" id="email_contact" name="email_contact" placeholder="Email">
+                        <span id="erreurEmail"></span>
+                    </div>
+
+                    <div class="colum_candidat">
+                        <label for="linkedin_contact">Linkedin :</label>
+                        <input type="text" id="linkedin_contact" name="linkedin_contact" placeholder="Linkedin">
+                        <span id="erreurLinkedin"></span>
+                    </div>
+
+                </div>
+                <div class="bouton_form">
+                    <input type="button" id="buttonAjout" class="button_add" value="Ajouter">
                 </div>
             </div>
+        </div>
+    </div>
+</div>

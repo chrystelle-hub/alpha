@@ -1,40 +1,54 @@
-<style type="text/css">
-.title {
-  padding-top: 150px;
-}
-</style>
-<div class="title"><h3 id="nom"></h3></div> 
-<div class=container>
-    <fieldset> 
-            <div class="box">
-                <div class="formulaire_add" method="POST" action="">
-                    <div class="formulaire">
-                                          
-                        <span id="erreurFormation"></span>
+<div class="super_form">
+    <div class="titre_admin rien_form">
+        <h2>Modifier Entreprise</h2>
+        <div class="contenair_formulaire candidat_form">
+            <div class="formulaire_contact" method="POST" action="">
+                <span id="message"></span>
+                <div class="add_candidature">
+
+                    <div class="colum_candidat">
                         <label for="formation">Formation visée :</label>
-                        <select id="formation" multiple="true" name="choix_formation" placeholder="Choisissez une formation">               
+                        <select id="formation" multiple="true" name="choix_formation" placeholder="Choisissez une formation">
                         </select>
-                        <span id="erreurSecteur"></span>
+                        <span id="erreurFormation"></span>
+                    </div>
+
+                    <div class="colum_candidat">
                         <label for="activite">Secteur d'activité :</label>
                         <input type="text" id="activite" name="activite" placeholder="Secteur d'activité" required>
-                        <span id="erreurAdresse"></span>
+                        <span id="erreurSecteur"></span>
+                    </div>
+
+                    <div class="colum_candidat">
                         <label for="adresse">Adresse :</label>
                         <input type="text" id="adresse" name="adresse" placeholder="Adresse" required>
-                        <span id="erreurCode"></span>
+                        <span id="erreurAdresse"></span>
+                    </div>
+
+                    <div class="colum_candidat">
                         <label for="code_postal">Code postal :</label>
                         <input type="text" id="code_postal" name="code_postal" placeholder="Code postal" required>
+                        <span id="erreurCode"></span>
                     </div>
-                    <div class="formulaire2">
-                        <span id="erreurTel"></span>
+
+                    <div class="colum_candidat">
                         <label class="tel">Tel :</label>
                         <input type="text" id= "tel" name="tel" placeholder="Tel">
-                        <span id="erreurEmail"></span>
+                        <span id="erreurTel"></span>
+                    </div>
+
+                    <div class="colum_candidat">
                         <label for="email">Email :</label>
                         <input type="text" id="email" name="email" placeholder="Email">
-                                
+                        <span id="erreurEmail"></span>
                     </div>
-                    <input type="button" id="buttonModif" value="Ajouter">
+
+
+                </div>
+                <div class="bouton_form">
+                    <input type="button" id="buttonModif" class="button_add" value="Ajouter">
                 </div>
             </div>
-    </fieldset>
+        </div>
+    </div>
 </div>
