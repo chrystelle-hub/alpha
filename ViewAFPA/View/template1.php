@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>Afpa-S</title>
-    <link rel="shortcut icon" type="image/png" href="image/logo.png"/>
+
+    <link rel="shortcut icon" type="image/png" href="../image/favicon.png"/>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/all.css">
     <link rel="stylesheet" href="../css/site.css">

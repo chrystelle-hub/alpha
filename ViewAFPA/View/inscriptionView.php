@@ -4,7 +4,7 @@
 <div class="contenair_principal">
     <div class="info">
         <div class="stat_sup">
-            <div class="stat espacement_cool">
+            <div class="stat espacement_cool impulse">
                 <p><b>Entraide</b><i class="fas fa-users"></i></p>
                 <h3>Profiter d'une entraide mutuel entre chaque utilisateur
                 d'AFPA Stage</h3>
@@ -18,7 +18,7 @@
                     <button class="button_connect button_info">Information sur l'Afpa ?</button>
                 </div>
             </div>
-            <div class="stat espacement_pascool">
+            <div class="stat espacement_pascool impulse">
                 <p><b>Sécurité</b><i class="fas fa-shield-alt"></i></p>
                 <h3>Utiliser nos services en toute sécurité, et bénificier
                 d'une assistance 7j7</h3>
@@ -32,7 +32,7 @@
                     <button class="button_connect button_info">Information sur le Coronavirus ?</button>
                 </div>
             </div>
-            <div class="stat espacement_cool">
+            <div class="stat espacement_cool impulse">
                 <p><b>Suivis</b><i class="fas fa-file-signature"></i></p>
                 <h3>Suivis constant de vos candidatures, par vous ainsi que par
                 votre formateur</h3>
@@ -69,7 +69,15 @@
         </form>
     </div>
 </div>
-<?php
-require_once ("../View/footer.php"); ?>
+<footer class="accueil_footer footer3">
+    <div>
+        <div>
+            <a class="non_a" href="https://www.facebook.com/AFPA.JEUNES"><i class="fab fa-facebook-square"></i></a>
+            <a class="non_a"  href="https://twitter.com/afpa_formation"><i class="fab fa-twitter-square"></i></a>
+            <a class="non_a"  href="https://www.youtube.com/user/AfpaWebTv"><i class="fab fa-youtube"></i></a>
+            <a class="non_a"  href="https://www.linkedin.com/company/afpa"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </div>
+</footer>
 
 

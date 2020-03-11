@@ -19,16 +19,23 @@
 
         <div class="naviguation_menu2">
             <div class="option">
-                <i class="fas fa-bell"></i>
+                <i class="fas fa-bell oui"></i>
                 <label>Anotations</label>
             </div>
             <div class="option">
-                <i class="fas fa-search"></i>
+                <i class="fas fa-search oui"></i>
                 <label>Rechercher</label>
             </div>
-            <div class="option">
-                <i class="fas fa-user"></i>
+            <div id="option_js" class="option">
+                <i class="fas fa-user oui"></i>
                 <label>Mon Compte</label>
+                <div id="header_absolute_js" class="absolute_header">
+                    <ul>
+                        <li>Mon profil <i class="far fa-user"></i></li>
+                        <li>Administration <i class="fas fa-gavel"></i></li>
+                        <li>Deconnexion <i class="fas fa-sign-out-alt"></i></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -37,3 +44,26 @@
     </div>
 
 </header>
+<script>
+
+
+    voletProfil = true;
+
+    function superFonction(){
+
+        if(voletProfil){
+            voletProfil = false;
+            document.getElementById("header_absolute_js").classList.add("change_absolute");
+        }
+        else{
+            voletProfil = true;
+            document.getElementById("header_absolute_js").classList.remove("change_absolute");
+        }
+    }
+
+
+    var varSuperCool = document.getElementById("option_js");
+    varSuperCool.addEventListener("click",superFonction);
+
+
+</script>
