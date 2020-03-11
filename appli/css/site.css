@@ -933,6 +933,9 @@ input[type="search"]:focus{
     font-family: Bahnschrift;
     border: 7px white solid;
 }
+.stat_classique p{
+    font-size:20px!important;
+}
 .contenair_stat_plus{
     display: flex;
     width: 45%;
