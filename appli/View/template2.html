@@ -34,7 +34,7 @@
                 <div id="header_absolute_js" class="absolute_header">
                     <ul>
                         <li><a id="profil">Mon profil <i class="far fa-user"></i></a></li>
-                        <li id="deconnexion">Deconnexion <i class="fas fa-sign-out-alt"></i></li>
+                        <li id="deconnexion2">Deconnexion <i class="fas fa-sign-out-alt"></i></li>
                     </ul>
                 </div>
             </div>
@@ -48,7 +48,7 @@
 <script>
 $("#recherche_lien").attr("href","recherchefinale.html?token="+token+"");
 $("#profil").attr("href","profilfinal.html?token="+token+"");
-$("#deconnexion").click(function(){
+$("#deconnexion2").click(function(){
                     $.ajax({
                     url: "https://127.0.0.1:8000/deconnexion",
                     type: 'POST',
