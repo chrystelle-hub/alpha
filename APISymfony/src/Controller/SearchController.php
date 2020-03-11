@@ -54,7 +54,7 @@ class SearchController extends AbstractController
             }
             $response->setContent(json_encode(
                 [
-                    'entreprise'=>$entreprise_liste,
+                    'entreprise'=>$entreprise_liste
                     
                 ]
             )); 
