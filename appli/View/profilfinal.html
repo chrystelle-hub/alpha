@@ -106,7 +106,7 @@ $(document).ready(function()
 									candidature.forEach(function(element)
 									{
 										var date = new Date(element["date"].date);
-										const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour:'2-digit', minute:'2-digit'};
+										const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
 										var date = date.toLocaleDateString("fr-FR", options);
 										var etat = element["etat"];
 									
