@@ -66,7 +66,7 @@ class AffichageController extends AbstractController
             $liste_reponses=$resumeCandidatures->listeReponses($reponses);
             if(count($delai_reponses)!=0)
             {
-                $delai_reponse=array_sum($delai_reponses) / (count($delai_reponses));
+                $delai_reponse=number_format(array_sum($delai_reponses) / (count($delai_reponses)),1);
             }
             else
             {

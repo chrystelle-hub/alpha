@@ -54,10 +54,12 @@ class AjoutEntrepriseType extends AbstractType
                  ],
              ])
             ->add('tel',TelType::class, [
-                'required' => false
+                'required' => false,
+                'empty_data' => 0
             ])
             ->add('mail', EmailType::class, [
-                'required' => false
+                'required' => false,
+                'empty_data' => 0
             ])
 
              

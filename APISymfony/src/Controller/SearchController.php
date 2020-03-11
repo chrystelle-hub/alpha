@@ -33,13 +33,14 @@ class SearchController extends AbstractController
             $nom=$data['nom'];
             $secteur_activite=$data['secteur_activite'];
             $formation=$data['formation'];
-            $formation_liste=[];
+           
             $entreprise_liste=[];
             //requete de recherche
             $entreprises = $this->getDoctrine()->getRepository(Entreprise::class)->findBySearch($departement,$nom,$secteur_activite,$formation);
             //recup infos
             foreach ($entreprises as  $entreprise) 
             {
+                $formation_liste=[];
                 $id=$entreprise->getId();
                 $nom=$entreprise->getNom();
                 $secteur_activite=$entreprise->getSecteurActivite();
