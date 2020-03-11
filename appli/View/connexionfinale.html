@@ -57,10 +57,17 @@
 			}
 			else
 			{
-				$('#erreur').text("login ou mot de passe incorrect");
+				if(data['message']==="activation")
+				{
+					$('#erreur').text("votre compte n'est pas encore activ\351");
+				}
+				else
+				{
+					$('#erreur').text("login ou mot de passe incorrect");
+				}
+				
 			}
 			console.log(data);
-			
 		})
 	});
      });
