@@ -717,6 +717,19 @@ input[type="search"]:focus{
     border-bottom: 1px #E4E4E4 solid;
     padding: 5px;
 }
+.mes_infos_profil{
+    width: 20%;
+    margin-left: 25%;
+    margin-top: 30px;
+}
+.mes_infos_profil h2{
+    font-size: 22px;
+    font-family: Verdana;
+    color: #837F7F;
+    border-bottom: 1px #E4E4E4 solid;
+    padding: 5px;
+}
+
 .mes_infos{
     width: 20%;
     margin-left: 20px;
