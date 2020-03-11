@@ -1136,6 +1136,12 @@ input[type="search"]:focus{
     opacity: 1;
     transition: 0.3s;
 }
+
+p{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 10px;
+    font-size: 14px;
+}
 /** ------------------------------------------------Admin View */
 
 .contenair_admin{
