@@ -727,7 +727,10 @@ input[type="search"]:focus{
 .statut_histo div{
     width: 40%;
 }
-.statut_histo i{
+.statut_histo i.vert{
+    color: #34BC05;
+}
+.statut_histo i.orange{
     color: #F5B355;
 }
 .decor_histo{

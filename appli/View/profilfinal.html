@@ -119,7 +119,15 @@ $(document).ready(function()
 										{
 											var etat = "Fini";
 										}
-						
+										if(etat==="Fini")
+										{
+											var iconeClass="fas fa-circle vert"
+										}
+										else
+										{
+											var iconeClass='fas fa-circle orange'
+										}
+										
 										var html = '<div class="ligne_histo">'+
 										'<div class="nom_histo">'+
 											'<label>Nom entreprise</label>'+
@@ -136,7 +144,7 @@ $(document).ready(function()
 												'<label>Statut</label>'+
 												'<h3 id="etat_candidature">'+etat+'</h3>'+
 											'</div>'+
-											'<i class="fas fa-circle"></i>'+
+											'<i class="'+iconeClass+'"></i>'+
 										'</div>'+
 										'</div>';
 										
