@@ -197,12 +197,12 @@ $(document).ready(function()
 
 									if(data['status']===200)
 									{
-										$('#success').text("le compte est valide");
+										$('#success').text("le compte est valid\351");
 
 									}
 									else
 									{
-										$("#success").text("le compte n'est pas valide")
+										$("#success").text("le compte n'est pas valid\351")
 									}
 
 									//console.log(data);
@@ -241,12 +241,12 @@ $(document).ready(function()
 
 							if(data['ajout']=="pas ok")
 							{
-								$('#success').text("la formation n'est pas ajoutée");
+								$('#success').text("la formation n'est pas ajout\351e");
 
 							}
 							else
 							{
-								$("#success").text("la formation est ajoutée")
+								$("#success").text("la formation est ajout\351e")
 							}
 
 							//console.log(data);
@@ -358,7 +358,7 @@ $(document).ready(function()
 						   $('#erreurPassword').text('');
 						   if(data['inscription']==="ok")
 						   {
-							   $('#message').text("inscription valide, en attente de validation par un admin");
+							   $('#message').text("inscription valide, en attente de validation par un formateur");
 						   }
 						   else
 						   {
