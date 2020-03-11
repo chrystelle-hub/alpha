@@ -133,7 +133,7 @@ $(document).ready(function()
 						//headers:{"X-AUTH-TOKEN":"REAL"},
 						data:{
 							"X-AUTH-TOKEN":token,
-							id: id,
+							
 						},
 						type: 'POST',
 						dataType: 'json',
@@ -148,7 +148,7 @@ $(document).ready(function()
 
 							if(element['etat_compte'] === 0 && element['roles'][0] == "ROLE_USER") {
 
-								var date = new Date(element["date_creation_password"]);
+								var date = new Date(element["date_creation_password"].date);
 								const options = {year: 'numeric', month: 'numeric', day: 'numeric'};
 								var date = date.toLocaleDateString("fr-FR", options);
 
@@ -198,6 +198,7 @@ $(document).ready(function()
 									if(data['status']===200)
 									{
 										$('#success').text("le compte est valid\351");
+										document.location.href='adminfinale.html?token='+token;
 
 									}
 									else
@@ -247,8 +248,9 @@ $(document).ready(function()
 							else
 							{
 								$("#success").text("la formation est ajout\351e")
+								document.location.href='adminfinale.html?token='+token;
 							}
-
+							document.location.href='adminfinale.html?token='+token;
 							//console.log(data);
 							//alert(JSON.parse(data));
 							//alert(data);
@@ -273,7 +275,7 @@ $(document).ready(function()
 							
 						}).done(function(data){
 	
-	
+							document.location.href='adminfinale.html?token='+token;
 							//console.log(data);
 							//alert(JSON.parse(data));
 							//alert(data);
@@ -359,6 +361,7 @@ $(document).ready(function()
 						   if(data['inscription']==="ok")
 						   {
 							   $('#message').text("inscription valide, en attente de validation par un formateur");
+							   document.location.href='adminfinale.html?token='+token;
 						   }
 						   else
 						   {

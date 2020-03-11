@@ -59,15 +59,46 @@ class AdminController extends AbstractController
      /**
      * @Route("/formation/users", name="admin_list_formation_user")
      */
-    public function FormationUsers(FormationRepository $formationRepository, SerializerInterface $serialize,Request $request)
+    public function FormationUsers(FormationRepository $formationRepository, SerializerInterface $serialize,Request $request, EntityManagerInterface $em)
     {
-        $formation = $formationRepository->find($request->request->get('id'));
+        $user= $em->getRepository(User::class)->findOneBy(['apiToken' => $request->request->get('X-AUTH-TOKEN')]);
+        $formations = $user->getFormation();
+        $response = new Response();
 
-        $data = $serialize->serialize($formation,'json', ['groups'=>'formation:users']);
+        $liste_formations = [];
+
+        foreach($formations as $formation )
+        {
+            $liste_formations[] = ['id'=> $formation->getId()];
+        }
+        $formation_users = $em->getRepository(User::class)->findUsers($formation->getId());
+        $liste_users = [];
+        foreach($formation_users as $formation_user)
+        {
+            $liste_users[] = [
+                'id' => $formation_user->getId(),
+                'nom' => $formation_user->getNom(),
+                'prenom'=> $formation_user->getPrenom(),
+                'date_creation_password'=> $formation_user->getDateCreationPassword(),
+                'etat_compte'=>$formation_user->getEtatCompte(),
+                'roles'=>$formation_user->getRoles()
+                
+            ];
+        }
+        //$formation = $formationRepository->find($request->request->get());
+
+        //$data = $serialize->serialize($formation,'json', ['groups'=>'formation:users']);
         
-        $response = new Response($data,200, [
+        /*$response = new Response($data,200, [
             'Content-Type' =>'application/json'
-        ]);
+        ]);*/
+
+        $response->setContent(json_encode(
+            [
+                'formation'=>$liste_formations,
+                'users'=>$liste_users
+            ]
+        ));
 
         $response->headers->set('Access-Control-Allow-Origin', '*');
 

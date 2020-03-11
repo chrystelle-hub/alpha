@@ -66,6 +66,19 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getOneOrNullResult()
             ;
     }
+    
+    public function findUsers($id)
+    {
+       
+        return $this->createQueryBuilder('u')
+            ->innerJoin('u.formation', 'f')
+            ->andWhere('f.id = :val')
+            ->setParameter('val', $id)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+   
     // /**
     //  * @return User[] Returns an array of User objects
     //  */
