@@ -1,0 +1,6 @@
+app_stage2/appli pour lancer le site web.
+login : test testtest2 pour le profil user
+	admin testtest2 pour le profil admin
+
+Le côté front est dans /appli
+le côté back dans /APISymfony
