@@ -322,7 +322,7 @@ titre_inscri  p{
 
 /** TEMPLATE 2--------------------------------------- */
 .absolute_header{
-    opacity: 0;
+   visibility: hidden;
     position: absolute;
     display: flex;
     justify-content: center;
@@ -335,7 +335,7 @@ titre_inscri  p{
     transition: 0.2s;
 }
 .change_absolute{
-    opacity: 1;
+    visibility: visible;
     margin-bottom: 0px;
     transition: 0.2s;
 }

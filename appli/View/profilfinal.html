@@ -43,6 +43,45 @@ $(document).ready(function()
      	$( "#contenu" ).load( "user.html" , 
      		function()
      		{
+				 $.ajax({
+					url:"https://127.0.0.1:8000/profil/data",
+					type: 'POST',
+					data:{
+						"X-AUTH-TOKEN":token,
+					},
+					dataType: 'json',
+					crossDomain: true, 
+			
+					}).done(function(data){
+						$('#nomModif').val(data['nom']);
+						$('#prenomModif').val(data['prenom']);
+					})
+					$('#edit').click(function(){
+						$.ajax({
+						url:"https://127.0.0.1:8000/profil/modif",
+						type: 'POST',
+						data:{
+							"X-AUTH-TOKEN":token,
+							'nom':$('#nomModif').val(),
+							'prenom':$('#prenomModif').val(),
+							'password':$('#pwdModif').val()
+						},
+						dataType: 'json',
+						crossDomain: true, 
+			
+					}).done(function(data){
+						if(data['modif']==="ok")
+						{
+							document.location.href='profilfinal.html?token='+token;
+						}
+						else
+						{
+							
+						}
+						
+					})
+					})
+					
 				 var admin = false;
 				 $.ajax({
 					url:"https://127.0.0.1:8000/testRole",
