@@ -9,6 +9,10 @@ html {
     box-sizing: border-box;
 }
 
+span{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+}
 select{
     -moz-appearance: none;
     appearance: none;

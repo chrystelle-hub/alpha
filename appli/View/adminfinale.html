@@ -242,15 +242,15 @@ $(document).ready(function()
 
 							if(data['ajout']=="pas ok")
 							{
-								$('#success').text("la formation n'est pas ajout\351e");
+								$('#ajout').text("la formation n'est pas ajout\351e");
 
 							}
 							else
 							{
-								$("#success").text("la formation est ajout\351e")
+								$("#ajout").text("la formation est ajout\351e")
 								document.location.href='adminfinale.html?token='+token;
 							}
-							document.location.href='adminfinale.html?token='+token;
+							
 							//console.log(data);
 							//alert(JSON.parse(data));
 							//alert(data);
