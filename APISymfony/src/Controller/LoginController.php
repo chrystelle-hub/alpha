@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -95,5 +96,30 @@ class LoginController extends AbstractController
         return new jsonResponse([
             'login'=>'ok'
         ]);
+    }
+    /**
+     * @Route("/testRole", name="test_role")
+     */
+    public function connexionRole(EntityManagerInterface $em, Request $request)
+    {
+        $user= $em->getRepository(User::class)->findOneBy(['apiToken' => $request->request->get('X-AUTH-TOKEN')]);
+        $admin=false;
+        $response = new Response();
+        if($user)
+        {
+           
+            $connexionRole = $em->getRepository(User::class)->userHasRole($user->getId());
+            if($connexionRole != null)
+            {
+                $admin = true;
+            }
+        }
+        $response->setContent(Json_encode(
+            [
+                'connexion' => $admin
+            ]
+        ));
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        return $response;
     }
 }
