@@ -158,7 +158,7 @@ header{
 
  */
 .contenair_principal{
-    background: url("../image/imageCars.jpg");
+    background: url("../image/image_accueil.jpg");
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
@@ -220,6 +220,7 @@ titre_inscri  p{
     flex-direction: column;
     font-size: 16px;
     background-color: white;
+    box-shadow: 0 10px 20px rgba(203,132,210,0.10), 0 6px 6px rgba(0,0,0,0.16);
 }
 .stat ul{
     padding: 20px;
@@ -264,6 +265,7 @@ titre_inscri  p{
     display: flex;
     justify-content: space-between;
     color: gray;
+    width: 100%;
 }
 .position_button_info{
     width: 100%;
@@ -303,10 +305,47 @@ titre_inscri  p{
 
 
 /** TEMPLATE 2--------------------------------------- */
+.absolute_header{
+    opacity: 0;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    margin-top: 120px;
+    margin-bottom: 120px;
+    padding: 5px;
+    font-size: 16px;
+    background-color: white;
+    box-shadow: 0 10px 20px rgba(203,132,210,0.10), 0 6px 6px rgba(0,0,0,0.16);
+    transition: 0.2s;
+}
+.change_absolute{
+    opacity: 1;
+    margin-bottom: 0px;
+    transition: 0.2s;
+}
+.absolute_header li{
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.absolute_header li i {
+    color: #8F8F8F;
+}
+.absolute_header li a{
+    color: black;
+}
+.absolute_header:hover{
+    color: initial;
+}
+.absolute_header li:hover{
+    background-color: #F1F1F1 ;
+}
 .naviguation_menu2{
     display: flex;
-    width: 30%;
+    width: 44%;
     justify-content: space-between;
+    position: relative;
 }
 .option{
     font-size: 20px;
@@ -317,7 +356,7 @@ titre_inscri  p{
     justify-content: center;
     align-items: center;
 }
-.option:hover{
+.option:hover .oui{
     font-weight:bold;
     color: #87bb34;
 }
@@ -676,7 +715,7 @@ input[type="search"]:focus{
 }
 .mes_infos{
     width: 20%;
-    margin-left: 25%;
+    margin-left: 20px;
     margin-top: 30px;
 }
 .mes_infos h2{
@@ -850,6 +889,11 @@ input[type="search"]:focus{
 }
 
 /** ------------------------------- entreprisePlusView.php */
+#entreprise_supp .mes_infos
+{
+    width:60vw !important;
+    margin-left:20%;
+}
 
 .entreprise_contenair {
     display: flex;
@@ -972,6 +1016,7 @@ input[type="search"]:focus{
     position: absolute;
 
 }
+
 .contenair_relative .info_entreprise{
     width: 100%;
     height: 100%;
@@ -1265,7 +1310,7 @@ p{
 
 /** ------------------------------------  ACCUEILVIEW ----------*/
 .contenair_accueil{
-    background: url("../image/image_accueil.jpg");
+    background: url("../image/image_accueil2.jpg");
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
@@ -1302,6 +1347,17 @@ p{
     justify-content: center;
     font-family: Bahnschrift;
     margin-top: 30px;
+}
+.contenair_accueil:hover{
+    background: url("../image/image_accueil2hover.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    background-size: 2000px;
+    margin-top: 100px;
+    opacity: 0.7;
+    height: 600px;
+    display: flex;
 }
 .test_admin:hover{
     width: 70%;
@@ -1349,7 +1405,7 @@ p{
     width: 100%;
     height: 100%;
     background-color: black;
-    opacity: 0.5;
+    opacity: 0.6;
     flex-direction: column;
     justify-content: center ;
     align-items: flex-end;
@@ -1484,6 +1540,19 @@ p{
     color: #2b2b2b;
     opacity: 0.7;
 }
+.footer3{
+    background: white;
+    opacity: 1;
+    color: grey;
+    box-shadow: 0px 2px 10px -1px rgba(0,0,0,0.75);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    background-size: 2000px;
+}
+.footer3 div div a{
+    color: grey;
+}
 .accueil_footer div{
    width: 50%;
     display: flex;
@@ -1556,6 +1625,44 @@ p{
     align-items: center;
     justify-content: space-around;
     height: 37px;
+}
+.impulse{
+    animation: jacky 3s infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.impulse:hover{
+    animation: jacky2 2s infinite;
+}
+
+
+
+@keyframes jacky2 {
+
+    0%{
+        box-shadow: 0 0 0 0 rgba(108, 108, 108 ,0.7);
+    }
+
+    70%{
+        box-shadow: 0 0 0 30px rgba(108, 108, 108 ,0);
+    }
+
+}
+
+
+
+@keyframes jacky {
+
+    0%{
+        box-shadow: 0 0 0 0 rgba(214, 214, 214 ,0.7);
+    }
+
+    70%{
+        box-shadow: 0 0 0 30px rgba(214, 214, 214 ,0);
+    }
+
 }
 *, *:before, *:after {
   box-sizing: border-box;

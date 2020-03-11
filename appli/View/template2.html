@@ -19,19 +19,25 @@
 
         <div class="naviguation_menu2">
             <div class="option">
-                <i class="fas fa-bell"></i>
+                <i class="fas fa-bell oui"></i>
                 <label>Anotations</label>
             </div>
 
-            <a class="option" id="recherche_lien"href="">
-                <i class="fas fa-search"></i>
+            <a class="option" id="recherche_lien" href="">
+                <i class="fas fa-search oui"></i>
                 <label>Rechercher</label>
             </a> 
            
-            <a class="option" id="compte_lien">
-                <i class="fas fa-user"></i>
+           <div id="option_js" class="option">
+                <i class="fas fa-user oui"></i>
                 <label>Mon Compte</label>
-            </a>   
+                <div id="header_absolute_js" class="absolute_header">
+                    <ul>
+                        <li><a id="profil">Mon profil <i class="far fa-user"></i></a></li>
+                        <li id="deconnexion">Deconnexion <i class="fas fa-sign-out-alt"></i></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
     <div class="little_header">
@@ -41,5 +47,37 @@
 </header>
 <script>
 $("#recherche_lien").attr("href","recherchefinale.html?token="+token+"");
-$("#compte_lien").attr("href","profilfinal.html?token="+token+"");
+$("#profil").attr("href","profilfinal.html?token="+token+"");
+$("#deconnexion").click(function(){
+                    $.ajax({
+                    url: "https://127.0.0.1:8000/deconnexion",
+                    type: 'POST',
+                    data:{
+                            "X-AUTH-TOKEN":token,
+                        },
+                    dataType: 'json',
+                    crossDomain: true, 
+                
+                    }).done(function(data){console.log(data)})
+                    .always(function(){
+                    document.location.href='connexionfinale.html';
+                    });
+                    })
+ voletProfil = true;
+
+    function superFonction(){
+
+        if(voletProfil){
+            voletProfil = false;
+            document.getElementById("header_absolute_js").classList.add("change_absolute");
+        }
+        else{
+            voletProfil = true;
+            document.getElementById("header_absolute_js").classList.remove("change_absolute");
+        }
+    }
+
+
+    var varSuperCool = document.getElementById("option_js");
+    varSuperCool.addEventListener("click",superFonction);
 </script>
