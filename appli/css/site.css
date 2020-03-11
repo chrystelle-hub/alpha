@@ -201,6 +201,18 @@ titre_inscri  p{
     flex-direction: column;
     align-items: center;
 }
+
+.contenair_formulaire_inscription{
+    width: 20%;
+    box-shadow: 0 10px 20px rgba(203,132,210,0.10), 0 6px 6px rgba(0,0,0,0.16);
+    border-radius: 1%;
+    background-color: white;
+    padding: 20px;
+    margin-right: 20px;
+    margin-left: 40%;
+    min-width: 300px;
+}
+
 .contenair_formulaire{
     width: 20%;
     box-shadow: 0 10px 20px rgba(203,132,210,0.10), 0 6px 6px rgba(0,0,0,0.16);
