@@ -6,3 +6,7 @@ Le côté front est dans /appli
 le côté back dans /APISymfony
 
 AppMobile: fonctionne à condition de changer l'ip dans l'url des requete ajax
+electron : fonctionne à lancer en ligne de commande 
+
+
+NE PAS OUBLIER DE LANCER LE SERVEUR SYMFONY POUR L'API
