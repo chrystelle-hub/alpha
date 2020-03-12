@@ -110,4 +110,30 @@ class RecuperationDataController extends AbstractController
         $response->headers->set('Access-Control-Allow-Origin', '*');
         return $response;
     }
+     /**
+     * @Route("/recuperation/data/formationuser", name="recuperation_data_formationuser")
+     */
+     //recup formation en cours
+    public function formationUser(Request $request)
+    {
+        
+        $user=$this->getDoctrine()->getRepository(User::class)->findOneBy(['apiToken' => $request->request->get('X-AUTH-TOKEN')]);
+        $formations=$user->getFormation();
+        $response=new Response();
+       
+        $formations_liste=[];
+        foreach($formations as $formation)
+        {
+            $formations_liste[]=['tag'=>$formation->getTag(),'id'=>$formation->getId()];
+        }
+
+        $response->setContent(json_encode(
+            [
+                'formation'=>$formations_liste
+            ]
+            )); 
+        
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        return $response;
+    }
 }

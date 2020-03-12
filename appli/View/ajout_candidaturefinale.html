@@ -55,9 +55,12 @@ $(document).ready(function()
      		function()
      		{
      			$.ajax({
-     			url: "https://127.0.0.1:8000/recuperation/data/formationactuelles",
+     			url: "https://127.0.0.1:8000/recuperation/data/formationuser",
 				type: 'POST',
 				dataType: 'json',
+				data:{
+					"X-AUTH-TOKEN":token,
+				},
 				crossDomain: true, 
 	     		}).done(function(data)
 	     		{
