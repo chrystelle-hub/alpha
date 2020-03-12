@@ -39,9 +39,11 @@ $(document).ready(function()
 		else
 		{
 			$( "#header" ).load( "template1.html" );
+            document.location.href='connexionfinale.html?token='+token;
 		}
 	}).fail(function(){
 		$( "#header" ).load( "template1.html" );
+        document.location.href='connexionfinale.html?token='+token;
 	}).always(function(){
 //url a changer
      	$( "#contenu" ).load( "candidature.html" , 
