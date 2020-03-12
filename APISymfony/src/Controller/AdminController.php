@@ -72,7 +72,9 @@ class AdminController extends AbstractController
             $liste_formations[] = ['id'=> $formation->getId()];
         }
         $formation_users = $em->getRepository(User::class)->findUsers($formation->getId());
+        
         $liste_users = [];
+
         foreach($formation_users as $formation_user)
         {
             $liste_users[] = [
@@ -85,13 +87,6 @@ class AdminController extends AbstractController
                 
             ];
         }
-        //$formation = $formationRepository->find($request->request->get());
-
-        //$data = $serialize->serialize($formation,'json', ['groups'=>'formation:users']);
-        
-        /*$response = new Response($data,200, [
-            'Content-Type' =>'application/json'
-        ]);*/
 
         $response->setContent(json_encode(
             [

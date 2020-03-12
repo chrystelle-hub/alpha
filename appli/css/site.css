@@ -1803,3 +1803,12 @@ footer{
 
     }
 }
+a div.ligne_histo
+{
+    color: black;
+}
+/*Page candidature*/
+button#modif_candidature{
+    margin-top: 20px;
+    margin-left: 35%;
+}
