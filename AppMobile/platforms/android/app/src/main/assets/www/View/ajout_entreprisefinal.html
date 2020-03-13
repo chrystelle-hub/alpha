@@ -50,18 +50,21 @@ $(document).ready(function()
      		function()
      		{
      			$.ajax({
-     			url: "http://10.105.21.44:8000/recuperation/data/formationactuelles",
+     			url: "http://10.105.21.44:8000/recuperation/data/formationuser",
 				type: 'POST',
 				dataType: 'json',
+				data:{
+						"X-AUTH-TOKEN":token,
+				}
 				crossDomain: true, 
 	     		}).done(function(data)
 	     		{
 	     			var formations=data['formation'];
 	     			formations.forEach( function(element)
-	     		{
-	     			var option='<option value='+element['id']+'> '+element['tag']+'</option>';
-	     			$(option).appendTo($('#formation')) 
-	     		})
+	     			{
+	     				var option='<option value='+element['id']+'> '+element['tag']+'</option>';
+	     				$(option).appendTo($('#formation')) 
+	     			})
 	     		})
      			$("#buttonAjout").click(function(){
 				$.ajax({

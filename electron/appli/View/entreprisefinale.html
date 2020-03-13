@@ -61,13 +61,13 @@ $(document).ready(function()
 						
 					}).done(function(data){
 						let entreprise_infos=data['entreprise_infos']
-						$("#add_candidature").click(function(){
+						$("#add_candidature , #add_candidature2").click(function(){
 							document.location.href='ajout_candidaturefinale.html?token='+token+'&id='+entreprise_infos['id'];
 						})
-						$("#add_contact").click(function(){
+						$("#add_contact , #add_contact2 ").click(function(){
 							document.location.href='ajout_contactfinal.html?token='+token+'&id='+entreprise_infos['id'];
 						})
-						$("#modif_entreprise").click(function(){
+						$("#modif_entreprise , #modif_entreprise2").click(function(){
 							document.location.href='modif_entreprisefinal.html?token='+token+'&id='+entreprise_infos['id'];
 						})
 						

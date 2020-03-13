@@ -55,9 +55,12 @@ $(document).ready(function()
      		function()
      		{
      			$.ajax({
-     			url: "http://10.105.21.44:8000/recuperation/data/formationactuelles",
+     			url: "http://10.105.21.44:8000/recuperation/data/formationuser",
 				type: 'POST',
 				dataType: 'json',
+				data:{
+					"X-AUTH-TOKEN":token,
+				},
 				crossDomain: true, 
 	     		}).done(function(data)
 	     		{
@@ -95,7 +98,7 @@ $(document).ready(function()
 					$('#erreurDate').text('');
 					if(data['ajout']==="ok")
 					{
-						document.location.href='profilfinal.html?token='+token;
+						document.location.href='candidaturefinale.html?token='+token+'&id='+id;
 					}
 					else
 					{

@@ -40,10 +40,12 @@ $(document).ready(function()
 		else
 		{
 			$( "#header" ).load( "template1.html" );
+			document.location.href='connexionfinale.html?token='+token;
 		}
 
 	}).fail(function(){
 		$( "#header" ).load( "template1.html" );
+		document.location.href='connexionfinale.html?token='+token;
 	}).always(function(){
 
      	$( "#contenu" ).load( "admin.html" , 
@@ -73,51 +75,41 @@ $(document).ready(function()
 									'<label>Nom Prenom</label>'+
 									'<p id="user_nom_prenom">'+ data['nom'] + ' ' + data['prenom'] +'</p>'+
 								'</div>'+ 
-								'<button class="button_connect button_inscription">'+
+								'<button class="button_connect button_inscription formateur">'+
 									'<input type="hidden" value=' + data['id'] +'>'+
 									'Formateur</button>'+
 								'</div>'
 								$(html).appendTo($('.formateur_align'));
 							}
 						})
-						$(".button_connect.button_inscription").click(function(){
+						$(".button_connect.button_inscription.formateur").click(function(){
 
-							var formateur = $(event.target);
-							var id_user_formateur =formateur.children('input').val();
-							
-								
+							var ajout_role = $(event.target);
+							var id_user_role = ajout_role.children('input').val();
+	
 							$.ajax({
 								url: "http://10.105.21.44:8000/admin/add/role",
-							
+								
 								//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
 								data:{
-									"X-AUTH-TOKEN":token,
-									id: id_user_formateur
-									
+									"X-AUTH-TOKEN":token ,
+									id: id_user_role
 								},
-									type: 'POST',
-									dataType: 'json',
-									crossDomain: true, 
-										
-								}).done(function(data){
-
-									if(data['status']===201)
-									{
-										$('#role').text("le role est donnée");
-
-									}
-									else
-									{
-										$("#role").text("le role n'est pas donnée")
-									}
-
-									//console.log(data);
-									//alert(JSON.parse(data));
-									//alert(data);
-								}).always(function(){
-									console.log("end2");
+								type: 'POST',
+								dataType: 'json',
+								crossDomain: true, 
+								
+							}).done(function(data){
+		
+								document.location.href='adminfinale.html?token='+token;
+								//console.log(data);
+								//alert(JSON.parse(data));
+								//alert(data);
+							}).always(function(){
+								console.log("end2");
 							});
-						})
+						});
+					
 
 						//console.log(data);
 						//alert(JSON.parse(data));
@@ -173,8 +165,8 @@ $(document).ready(function()
 								$(html).appendTo($('.user_activ'));
 							}
 
-
 						});
+
 						$(".valide").click(function(){
 
 							var validation = $(event.target);
@@ -222,67 +214,43 @@ $(document).ready(function()
 					});
 					
 				
-				 $("#ajout_formation").click(function(){
-					$.ajax({
-						url: "http://10.105.21.44:8000/admin/add/formation",
-							
-						//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
-						data:{
-							"X-AUTH-TOKEN":token,
-							Nom: $("#nom_formation").val(),
-							promotion :$("#promotion").val(),
-							Tag: $("#nom_formation").val() + "/" + $("#promotion").val()
-							
-						},
-							type: 'POST',
-							dataType: 'json',
-							crossDomain: true, 
-							
-						}).done(function(data){
-
-							if(data['ajout']=="pas ok")
-							{
-								$('#ajout').text("la formation n'est pas ajout\351e");
-
-							}
-							else
-							{
-								$("#ajout").text("la formation est ajout\351e")
-								document.location.href='adminfinale.html?token='+token;
-							}
-							
-							//console.log(data);
-							//alert(JSON.parse(data));
-							//alert(data);
-						}).always(function(){
-							console.log("end2");
-						});
-
-					});
-
-					$("#formateur").click(function(){
+				 	$("#ajout_formation").click(function(){
 						$.ajax({
-							url: "http://10.105.21.44:8000/admin/add/role",
-							
+							url: "http://10.105.21.44:8000/admin/add/formation",
+								
 							//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
 							data:{
-								"X-AUTH-TOKEN":token ,
-							
+								"X-AUTH-TOKEN":token,
+								Nom: $("#nom_formation").val(),
+								promotion :$("#promotion").val(),
+								Tag: $("#nom_formation").val() + "/" + $("#promotion").val()
+								
 							},
-							type: 'POST',
-							dataType: 'json',
-							crossDomain: true, 
-							
-						}).done(function(data){
-	
-							document.location.href='adminfinale.html?token='+token;
-							//console.log(data);
-							//alert(JSON.parse(data));
-							//alert(data);
-						}).always(function(){
-							console.log("end2");
+								type: 'POST',
+								dataType: 'json',
+								crossDomain: true, 
+								
+							}).done(function(data){
+
+								if(data['ajout']=="pas ok")
+								{
+									$('#ajout').text("la formation n'est pas ajout\351e");
+
+								}
+								else
+								{
+									$("#ajout").text("la formation est ajout\351e")
+									document.location.href='adminfinale.html?token='+token;
+								}
+								
+								//console.log(data);
+								//alert(JSON.parse(data));
+								//alert(data);
+							}).always(function(){
+								console.log("end2");
+							});
+
 						});
-					});
 
 					$("#search").click(function(){
 						$.ajax({
@@ -291,7 +259,8 @@ $(document).ready(function()
 							//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
 							data:{
 								"X-AUTH-TOKEN":token,
-								email: $("#search_email").val()
+								email: $("#search_email").val(),
+								
 							},
 							type: 'POST',
 							dataType: 'json',
@@ -308,14 +277,40 @@ $(document).ready(function()
 										'<label>Nom Prenom</label>'+
 										'<p id="user_nom_prenom">'+ user['nom'] + ' ' + user['prenom'] +'</p>'+
 									'</div>'+ 
-									'<button class="button_connect button_inscription">'+
+									'<button class="button_connect button_inscription formateur">'+
 										'<input type="hidden" value=' + user['id'] +'>'+
 										'Formateur</button>'+
 									'</div>'
 									$('.formateur_align').replaceWith(html);
 								}
-						
-							
+
+								$(".button_connect.button_inscription.formateur").click(function(){
+
+									var ajout_role = $(event.target);
+									var id_user_role = ajout_role.children('input').val();
+			
+									$.ajax({
+										url: "http://10.105.21.44:8000/admin/add/role",
+										
+										//headers:{"X-AUTH-TOKEN":"o8d4bxtlKq8Qd7IQCcaKwpV3Jjseywranq9UPF0ZF9uZBAA7Ku"},
+										data:{
+											"X-AUTH-TOKEN":token ,
+											id: id_user_role
+										},
+										type: 'POST',
+										dataType: 'json',
+										crossDomain: true, 
+										
+									}).done(function(data){
+				
+										document.location.href='adminfinale.html?token='+token;
+										//console.log(data);
+										//alert(JSON.parse(data));
+										//alert(data);
+									}).always(function(){
+										console.log("end2");
+									});
+								});
 							//console.log(data);
 							//alert(JSON.parse(data));
 							//alert(data);

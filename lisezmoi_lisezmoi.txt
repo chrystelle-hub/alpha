@@ -7,6 +7,7 @@ le côté back dans /APISymfony
 
 AppMobile: fonctionne à condition de changer l'ip dans l'url des requete ajax
 electron : fonctionne à lancer en ligne de commande 
+(npm install dans le dossier / changer url dans index.js pour mettre l'url absolue de index.html / npm run start)
 
 
 NE PAS OUBLIER DE LANCER LE SERVEUR SYMFONY POUR L'API

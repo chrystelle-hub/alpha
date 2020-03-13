@@ -126,7 +126,7 @@ header{
     background:#00a0e0;
     color:#fff;
     border-radius:1px;
-    width:250px;
+    width:150px;
     font-size: 13px;
     border:none;
 }
@@ -928,6 +928,7 @@ input[type="search"]:focus{
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
+    flex-wrap: wrap;
 }
 .entreprise_contenair .entreprise{
     width: 27%;
@@ -1669,7 +1670,39 @@ p{
     animation: jacky2 2s infinite;
 }
 
-
+.menu_cache_entreprise{
+    z-index: 150;
+    margin-left: 5px;
+    font-size: 25px;
+    position: fixed;
+    margin-top: 10px;
+    padding: 5px;
+    background-color: #87bb34;
+    color: white;
+    DISPLAY: flex;
+    border-radius: 3%;
+    display: none;
+}
+.option2{
+    width: 100%;
+    justify-content: space-around;
+}
+.salut_bouton{
+    border: none;
+    opacity: 1;
+    background: transparent;
+    font-family: verdana;
+}
+.boitie_cache{
+    position: absolute;
+    margin-left: -1000px;
+    transition: 0.5s;
+}
+.boitie_ouvert{
+    position: initial;
+    margin-left: 0px;
+    transition: 0.5s;
+}
 
 @keyframes jacky2 {
 
@@ -1757,6 +1790,10 @@ footer{
         margin-top: 20px;
     }
 
+    div#deux{
+        order: -1;
+    }
+
 }
 
 @media (max-width: 1300px) {
@@ -1778,8 +1815,56 @@ footer{
         padding: 10px;
         width: 100%;
     }
+    .entreprise_with{
+        width: 100%;
+        display: flex;
+        font-size: 30px;
+        margin: 5px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .info_sup_enter{
+        width: 84%;
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 33px;
+    }
+    .entreprise_with label{
+        padding: 5px;
+        font-size: 13px;
+        color: #565656;
+        width: auto;
+    }
+    .contenair_relative .info_entreprise{
+        width: 100%;
+        height: 100%;
+        color: white;
+        font-family: Verdana;
+        font-size: 25px;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+    .info_sup_enter div {
+        margin-right: 0px;
+    }
+    .cache_option{
+        display: none;
+    }
+    .menu_cache_entreprise{
+        display: flex;
+    }
+     .option_button{
+        display:none;
+    }
+
 }
 @media (max-width: 1000px) {
+
     .contenair_header{
         width: 100%;
 
@@ -1801,6 +1886,60 @@ footer{
     .titre_inscri{
         font-size: 19px;
 
+    }
+    .form_ligne_effect:before{
+        width: 8rem;
+    }
+    .form_ligne_effect:after{
+        width: 8rem;
+    }
+    .ok_accueil_blabla i {
+        font-size: 30px;
+    }
+    .ok_accueil_blabla p {
+        display: none;
+    }
+    .ok_accueil_blabla h3{
+        margin-top: 10px;
+        display: flex;
+        font-size: 20px;
+        color: #2b2b2b;
+        font-family: Bahnschrift;
+        text-align: center;
+    }
+    .test_admin button{
+        display: flex;
+        margin-top: 30px;
+        width: 70%;
+    }
+    .test_admin h2{
+        display: none;
+    }
+    .test_admin:hover{
+        display: none;
+    }
+    .ole:hover{
+        display: none;
+    }
+    .bloc_noir:hover{
+
+    }
+    .candidat_form{
+        margin-top: 20px;
+    }
+    .absolute_header{
+        padding: 3px;
+        font-size: 13px;
+        margin-left: -23px;
+    }
+    #deux{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: -61px;
+        z-index: 11;
     }
 }
 a div.ligne_histo
