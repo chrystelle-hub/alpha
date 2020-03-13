@@ -1858,9 +1858,13 @@ footer{
     .menu_cache_entreprise{
         display: flex;
     }
+     .option_button{
+        display:none;
+    }
 
 }
 @media (max-width: 1000px) {
+
     .contenair_header{
         width: 100%;
 
